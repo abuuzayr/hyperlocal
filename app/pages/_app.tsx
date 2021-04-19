@@ -5,26 +5,38 @@ import {
   AuthenticationError,
   AuthorizationError,
   ErrorFallbackProps,
-  useQueryErrorResetBoundary
+  useQueryErrorResetBoundary,
 } from "blitz"
 import { ErrorBoundary } from "react-error-boundary"
 import LoginForm from "app/auth/components/LoginForm"
 
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import "@fontsource/inter/400.css"
+import "@fontsource/inter/700.css"
+import "@fontsource/libre-franklin/700.css"
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Libre Franklin",
+    body: "Inter",
+  },
+})
+
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   const router = useRouter()
-  const {reset} = useQueryErrorResetBoundary()
-
-
+  const { reset } = useQueryErrorResetBoundary()
 
   return (
-    <ErrorBoundary
-      FallbackComponent={RootErrorFallback}
-      resetKeys={[router.asPath]}
-      onReset={reset}
-    >
+    <ChakraProvider theme={theme}>
+      <ErrorBoundary
+        FallbackComponent={RootErrorFallback}
+        resetKeys={[router.asPath]}
+        onReset={reset}
+      >
         {getLayout(<Component {...pageProps} />)}
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </ChakraProvider>
   )
 }
 
