@@ -17,7 +17,7 @@ import {
   Avatar,
   Icon,
 } from "@chakra-ui/react"
-import { HamburgerIcon, CloseIcon, AddIcon, TriangleDownIcon } from "@chakra-ui/icons"
+import { AddIcon, TriangleDownIcon } from "@chakra-ui/icons"
 import { FiShoppingBag } from "react-icons/fi"
 import { FaRegHandSpock } from "react-icons/fa"
 import { RiAppsLine } from "react-icons/ri"
