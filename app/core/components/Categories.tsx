@@ -60,8 +60,14 @@ function StatsCard(props: StatsCardProps) {
 
 const Categories = () => {
   return (
-    <Box maxW="7xl" mx={"auto"} mt={-10} px={{ base: 2, sm: 12, md: 17 }}>
-      <Box maxW="3xl" mx={"auto"} my={8}>
+    <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
+        <StatsCard title={"Products"} stat={"5,000"} icon={FiShoppingBag} color={"#2ecc71"} />
+        <StatsCard title={"Services"} stat={"1,000"} icon={FaRegHandSpock} color={"#3498db"} />
+        <StatsCard title={"Apps"} stat={"7"} icon={RiAppsLine} color={"#9b59b6"} />
+        <StatsCard title={"Communities"} stat={"7"} icon={BsPeople} color={"#e74c3c"} />
+      </SimpleGrid>
+      <Box maxW="3xl" mx={"auto"} my={8} mb={-2}>
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
@@ -70,18 +76,24 @@ const Categories = () => {
           <Input
             textAlign={"center"}
             fontSize={{ base: "lg", md: "2xl" }}
-            py={{ base: 6, md: 10 }}
+            py={6}
             placeholder={"What do you want to discover?"}
             shadow={"xl"}
+            borderTop={"none"}
+            borderRight={"none"}
+            borderLeft={"none"}
+            borderWidth={"3px"}
+            borderRadius={"none"}
+            borderColor={"red.300"}
+            _focus={{
+              outline: "none",
+            }}
+            _hover={{
+              borderColor: "red.500",
+            }}
           />
         </InputGroup>
       </Box>
-      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard title={"Products"} stat={"5,000"} icon={FiShoppingBag} color={"#2ecc71"} />
-        <StatsCard title={"Services"} stat={"1,000"} icon={FaRegHandSpock} color={"#3498db"} />
-        <StatsCard title={"Apps"} stat={"7"} icon={RiAppsLine} color={"#9b59b6"} />
-        <StatsCard title={"Communities"} stat={"7"} icon={BsPeople} color={"#e74c3c"} />
-      </SimpleGrid>
     </Box>
   )
 }
