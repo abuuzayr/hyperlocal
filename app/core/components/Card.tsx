@@ -28,57 +28,90 @@ const Card = (props) => {
   const { category, tagline, img, logo, name, tags, social, website } = props.data
   const liked = false
   return (
-    <Center py={6}>
+    <Center py={0} d="inline-block" maxW={"445px"} w={"full"}>
       <Box
-        maxW={"445px"}
-        w={"full"}
         bg={useColorModeValue("white", "gray.900")}
         boxShadow={"2xl"}
         rounded={"md"}
         p={6}
         overflow={"hidden"}
       >
-        <Box
-          h={"180px"}
-          bg={"gray.100"}
-          mt={-6}
-          mx={-6}
-          mb={6}
-          pos={"relative"}
-          overflow={"hidden"}
-        >
-          <Text
-            color={"white"}
-            bg={categoryColors[category]}
-            textTransform={"uppercase"}
-            fontWeight={800}
-            fontSize={"xs"}
-            letterSpacing={1.1}
-            borderRadius={10}
-            px={3}
-            position={"absolute"}
-            top={3}
-            left={3}
+        {img ? (
+          <Box
+            h={"180px"}
+            bg={"gray.100"}
+            mt={-6}
+            mx={-6}
+            mb={6}
+            pos={"relative"}
+            overflow={"hidden"}
           >
-            {category}
-          </Text>
-          <Image src={img} layout={"cover"} />
-          <Icon
-            as={liked ? RiHeart2Fill : RiHeart2Line}
-            color={liked ? "red.500" : "white"}
-            position={"absolute"}
-            top={3}
-            right={3}
-            boxSize={8}
-            cursor={"pointer"}
-            _hover={{
-              color: "red.500",
-            }}
-          />
-        </Box>
-        <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
-          <Avatar src={logo} alt={"Author"} />
-        </HStack>
+            <Text
+              color={"white"}
+              bg={categoryColors[category]}
+              textTransform={"uppercase"}
+              fontWeight={800}
+              fontSize={"xs"}
+              letterSpacing={1.1}
+              borderRadius={10}
+              px={3}
+              position={"absolute"}
+              top={3}
+              left={3}
+            >
+              {category}
+            </Text>
+            <Image src={img} layout={"cover"} />
+            <Icon
+              as={liked ? RiHeart2Fill : RiHeart2Line}
+              color={liked ? "red.500" : "white"}
+              position={"absolute"}
+              top={3}
+              right={3}
+              boxSize={8}
+              cursor={"pointer"}
+              _hover={{
+                color: "red.500",
+              }}
+            />
+          </Box>
+        ) : (
+          <Box h={"50px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
+            <Text
+              color={"white"}
+              bg={categoryColors[category]}
+              textTransform={"uppercase"}
+              fontWeight={800}
+              fontSize={"xs"}
+              letterSpacing={1.1}
+              borderRadius={10}
+              px={3}
+              position={"absolute"}
+              top={3}
+              left={3}
+            >
+              {category}
+            </Text>
+            <Image src={img} layout={"cover"} />
+            <Icon
+              as={liked ? RiHeart2Fill : RiHeart2Line}
+              color={liked || !img ? "red.500" : "white"}
+              position={"absolute"}
+              top={3}
+              right={3}
+              boxSize={8}
+              cursor={"pointer"}
+              _hover={{
+                color: "red.500",
+              }}
+            />
+          </Box>
+        )}
+        {logo && (
+          <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
+            <Avatar src={logo} alt={"Author"} />
+          </HStack>
+        )}
         <Stack textAlign={"center"}>
           <Heading
             color={useColorModeValue("gray.700", "white")}
@@ -119,7 +152,6 @@ const Card = (props) => {
               rounded={"md"}
               bg={"red.500"}
               color={"white"}
-              boxShadow={"xl"}
               _hover={{
                 bg: "red.400",
               }}
