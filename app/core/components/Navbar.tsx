@@ -40,7 +40,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
   </Link>
 )
 
-const Navbar = () => {
+const Navbar = ({ onAddOpen }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -97,6 +97,7 @@ const Navbar = () => {
               bg: "transparent",
               color: "red.500",
             }}
+            onClick={onAddOpen}
           >
             Add
           </Button>
