@@ -14,9 +14,9 @@ import {
 } from "@chakra-ui/react"
 
 const Add = (props) => {
-  const { isOpen, onOpen, onClose } = props
+  const { isOpen, onClose } = props
 
-  const initialRef = useRef()
+  const initialRef = useRef<HTMLInputElement>(null)
 
   return (
     <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
