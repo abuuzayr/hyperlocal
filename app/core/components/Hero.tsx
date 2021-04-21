@@ -1,4 +1,4 @@
-import { Flex, Heading, Image, Stack, Text, useBreakpointValue } from "@chakra-ui/react"
+import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react"
 
 const Hero = () => {
   return (
@@ -34,7 +34,7 @@ const Hero = () => {
               _after={{
                 content: "''",
                 width: "full",
-                height: useBreakpointValue({ base: "10%", md: "20%" }),
+                height: ["10%", "20%"],
                 position: "absolute",
                 bottom: -1,
                 left: 0,
