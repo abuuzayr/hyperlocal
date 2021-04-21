@@ -82,9 +82,10 @@ const Categories = () => {
             borderTop={"none"}
             borderRight={"none"}
             borderLeft={"none"}
-            borderWidth={"3px"}
+            borderWidth={"2px"}
             borderRadius={"none"}
             borderColor={"red.300"}
+            borderBottomStyle={"dashed"}
             _focus={{
               outline: "none",
             }}
