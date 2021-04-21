@@ -58,14 +58,29 @@ function StatsCard(props: StatsCardProps) {
   )
 }
 
-const Categories = () => {
+const Categories = ({ counts }) => {
   return (
     <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard title={"Products"} stat={"5,000"} icon={FiShoppingBag} color={"#2ecc71"} />
-        <StatsCard title={"Services"} stat={"1,000"} icon={FaRegHandSpock} color={"#3498db"} />
-        <StatsCard title={"Apps"} stat={"7"} icon={RiAppsLine} color={"#9b59b6"} />
-        <StatsCard title={"Communities"} stat={"7"} icon={BsPeople} color={"#e74c3c"} />
+        <StatsCard
+          title={"Products"}
+          stat={counts.product}
+          icon={FiShoppingBag}
+          color={"#2ecc71"}
+        />
+        <StatsCard
+          title={"Services"}
+          stat={counts.service}
+          icon={FaRegHandSpock}
+          color={"#3498db"}
+        />
+        <StatsCard title={"Apps"} stat={counts.app} icon={RiAppsLine} color={"#9b59b6"} />
+        <StatsCard
+          title={"Communities"}
+          stat={counts.community}
+          icon={BsPeople}
+          color={"#e74c3c"}
+        />
       </SimpleGrid>
       <Box maxW="3xl" mx={"auto"} my={8} mb={-2}>
         <InputGroup>
