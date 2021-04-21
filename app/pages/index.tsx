@@ -61,7 +61,7 @@ const Home: BlitzPage = () => {
         <Hero />
         <Categories />
         <GridComponent />
-        <Section />
+        <Section onAddOpen={disclosure.onOpen} />
       </div>
       <Footer />
       <Add {...disclosure} />
