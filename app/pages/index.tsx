@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { Link, BlitzPage, useMutation, Routes } from "blitz"
+import { Link, BlitzPage, useMutation, Routes, invokeWithMiddleware } from "blitz"
 import { useDisclosure } from "@chakra-ui/react"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -11,6 +11,26 @@ import Categories from "app/core/components/Categories"
 import GridComponent from "app/core/components/Grid"
 import Section from "app/core/components/Section"
 import Add from "app/core/components/Add"
+
+import getListingCount from "app/listings/queries/getListingCount"
+
+export async function getServerSideProps({ params, req, res }) {
+  const counts = {}
+  await Promise.all(
+    ["product", "service", "app", "community"].map(async (category) => {
+      counts[category] = await invokeWithMiddleware(
+        getListingCount,
+        { where: { category } },
+        { req, res }
+      )
+    })
+  )
+  return {
+    props: {
+      counts,
+    },
+  }
+}
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -52,14 +72,14 @@ const UserInfo = () => {
   }
 }
 
-const Home: BlitzPage = () => {
+const Home: BlitzPage = ({ counts }) => {
   const disclosure = useDisclosure()
   return (
     <>
       <Navbar onAddOpen={disclosure.onOpen} />
       <div className="container">
         <Hero />
-        <Categories />
+        <Categories counts={counts} />
         <GridComponent />
         <Section onAddOpen={disclosure.onOpen} />
       </div>
