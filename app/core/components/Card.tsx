@@ -30,11 +30,12 @@ const Card = (props) => {
   return (
     <Center py={0} d="inline-block" maxW={"445px"} w={"full"}>
       <Box
-        bg={useColorModeValue("white", "gray.900")}
-        boxShadow={"2xl"}
-        rounded={"md"}
         p={6}
         overflow={"hidden"}
+        bg={useColorModeValue("white", "gray.400")}
+        boxShadow={"2xl"}
+        rounded={"md"}
+        mb={4}
       >
         {img ? (
           <Box
