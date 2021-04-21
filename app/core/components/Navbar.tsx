@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { useRouter } from "blitz"
 import {
   Box,
   Flex,
@@ -42,6 +43,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 const Navbar = ({ onAddOpen }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
 
   return (
     <Box px={4}>
@@ -72,16 +74,16 @@ const Navbar = ({ onAddOpen }) => {
               </Button>
             </MenuButton>
             <MenuList>
-              <MenuItem>
+              <MenuItem onClick={() => router.push("?category=product")}>
                 <Icon as={FiShoppingBag} mr={5} /> Products
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={() => router.push("?category=service")}>
                 <Icon as={FaRegHandSpock} mr={5} /> Services
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={() => router.push("?category=app")}>
                 <Icon as={RiAppsLine} mr={5} /> Apps
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={() => router.push("?category=community")}>
                 <Icon as={BsPeople} mr={5} /> Communities
               </MenuItem>
             </MenuList>
