@@ -1,14 +1,6 @@
-import { Suspense } from "react"
-import { useQuery, useRouter, useRouterQuery } from "blitz"
-import {
-  Container,
-  Stack,
-  Box,
-  SkeletonCircle,
-  SkeletonText,
-  Center,
-  useColorModeValue,
-} from "@chakra-ui/react"
+import { Suspense, useRef, useEffect, useState } from "react"
+import { useQuery, useRouterQuery } from "blitz"
+import { Container, Stack, Box, SkeletonCircle, SkeletonText, Center } from "@chakra-ui/react"
 import Card from "app/core/components/Card"
 import getListings from "app/listings/queries/getListings"
 
@@ -74,12 +66,31 @@ const WrappedGridComponent = (props) => (
   </Suspense>
 )
 
-const GridComponent = () => (
-  <Container as={Stack} maxW={"7xl"} py={10}>
-    <Box w="100%" mx="auto" sx={{ columnCount: [1, 2, 4], columnGap: "1.5rem" }}>
-      <WrappedGridComponent />
-    </Box>
-  </Container>
-)
+const GridComponent = () => {
+  const [scrolled, setScrolled] = useState(false)
+  const gridRef = useRef(null)
+  const query = useRouterQuery()
+  useEffect(() => {
+    if (scrolled) return
+    if (query.hasOwnProperty("category") && gridRef && gridRef.current) {
+      const { offsetTop } = gridRef.current
+      window.scrollTo({
+        top: offsetTop,
+        left: 0,
+        behavior: "smooth",
+      })
+      setScrolled(true)
+    }
+  }, [gridRef])
+  return (
+    <div ref={gridRef}>
+      <Container as={Stack} maxW={"7xl"} py={10} id="listings-grid">
+        <Box w="100%" mx="auto" sx={{ columnCount: [1, 2, 4], columnGap: "1.5rem" }}>
+          <WrappedGridComponent />
+        </Box>
+      </Container>
+    </div>
+  )
+}
 
 export default GridComponent
