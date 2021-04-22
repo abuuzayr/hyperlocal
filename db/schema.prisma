@@ -65,11 +65,11 @@ model Listing {
   updatedAt DateTime @updatedAt
   category  String
   tagline   String
-  img       String
-  logo      String
+  img       String?
+  logo      String?
   name      String
   likes     Int      @default(0)
-  tags      String
-  website   String
-  social    String
+  tags      String?
+  website   String?
+  social    String?
 }
