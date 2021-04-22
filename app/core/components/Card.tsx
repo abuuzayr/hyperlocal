@@ -1,4 +1,5 @@
-// import Image from "next/image"
+import { useState, useEffect } from "react"
+import { useMutation } from "blitz"
 import {
   Box,
   Center,
@@ -16,6 +17,7 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons"
 import { IoShareSocialOutline } from "react-icons/io5"
 import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri"
+import updateListing from "app/listings/mutations/updateListing"
 
 const categoryColors = {
   products: "#2ecc71",
@@ -25,8 +27,49 @@ const categoryColors = {
 }
 
 const Card = (props) => {
-  const { category, tagline, img, logo, name, tags, social, website } = props.data
-  const liked = false
+  const {
+    category,
+    tagline,
+    img,
+    logo,
+    name,
+    tags,
+    social,
+    website,
+    likes: originalLikes,
+    id,
+  } = props.data
+  const [liked, setLiked] = useState([])
+  const [likes, setLikes] = useState(originalLikes)
+  const [updateListingMutation] = useMutation(updateListing)
+
+  const addLike = async () => {
+    try {
+      await updateListingMutation({
+        ...props.data,
+        likes: likes + 1,
+      })
+      setLikes(likes + 1)
+      const newLiked = Array.from(new Set([...liked, id]))
+      setLiked(newLiked)
+      if (localStorage) {
+        if (localStorage.getItem("_liked")) {
+          localStorage.setItem("_liked", JSON.stringify(newLiked))
+        } else {
+          localStorage.setItem("_liked", JSON.stringify([id]))
+        }
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage && localStorage.getItem("_liked")) {
+      setLiked(JSON.parse(localStorage.getItem("_liked") || "[]"))
+    }
+  }, [])
+
   return (
     <Center py={0} d="inline-block" maxW={"445px"} w={"full"}>
       <Box
@@ -63,21 +106,25 @@ const Card = (props) => {
               {category}
             </Text>
             <Image src={img} layout={"cover"} />
-            <Icon
-              as={liked ? RiHeart2Fill : RiHeart2Line}
-              color={liked ? "red.500" : "white"}
-              position={"absolute"}
-              top={3}
-              right={3}
-              boxSize={8}
-              cursor={"pointer"}
-              _hover={{
-                color: "red.500",
-              }}
-            />
+            <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
+              <Icon
+                as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
+                color={liked.includes(id) ? "red.500" : "white"}
+                boxSize={8}
+                cursor={"pointer"}
+                _hover={{
+                  color: "red.500",
+                }}
+                mb={-2}
+                onClick={addLike}
+              />
+              <Text fontSize={10} mt={0} as="div">
+                {likes}
+              </Text>
+            </Stack>
           </Box>
         ) : (
-          <Box h={"50px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
+          <Box h={"60px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
             <Text
               color={"white"}
               bg={categoryColors[category]}
@@ -94,18 +141,22 @@ const Card = (props) => {
               {category}
             </Text>
             <Image src={img} layout={"cover"} />
-            <Icon
-              as={liked ? RiHeart2Fill : RiHeart2Line}
-              color={liked || !img ? "red.500" : "white"}
-              position={"absolute"}
-              top={3}
-              right={3}
-              boxSize={8}
-              cursor={"pointer"}
-              _hover={{
-                color: "red.500",
-              }}
-            />
+            <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
+              <Icon
+                as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
+                color={liked.includes(id) || !img ? "red.500" : "white"}
+                boxSize={8}
+                cursor={"pointer"}
+                _hover={{
+                  color: "red.500",
+                }}
+                mb={-2}
+                onClick={addLike}
+              />
+              <Text fontSize={10} mt={0} as="div">
+                {likes}
+              </Text>
+            </Stack>
           </Box>
         )}
         {logo && (
