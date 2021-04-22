@@ -8,7 +8,7 @@ const CreateListing = z
   })
   .nonstrict()
 
-export default resolver.pipe(resolver.zod(CreateListing), resolver.authorize(), async (input) => {
+export default resolver.pipe(resolver.zod(CreateListing), async (input) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const listing = await db.listing.create({ data: input })
 
