@@ -72,4 +72,6 @@ model Listing {
   tags      String?
   website   String?
   social    String?
+
+  @@unique([name, category], name: "Listing_name_category_key")
 }
