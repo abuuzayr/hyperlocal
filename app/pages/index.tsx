@@ -1,4 +1,5 @@
 import { BlitzPage } from "blitz"
+import { useState } from "react"
 import { useDisclosure } from "@chakra-ui/react"
 import Layout from "app/core/layouts/Layout"
 import Hero from "app/core/components/Hero"
@@ -11,17 +12,18 @@ import Add from "app/core/components/Add"
 
 const Home: BlitzPage = () => {
   const disclosure = useDisclosure()
+  const [toggle, setToggle] = useState(false)
   return (
     <>
       <Navbar onAddOpen={disclosure.onOpen} />
       <div className="container">
         <Hero />
-        <Categories />
-        <GridComponent />
+        <Categories toggle={toggle} />
+        <GridComponent toggle={toggle} />
         <Section onAddOpen={disclosure.onOpen} />
       </div>
       <Footer />
-      <Add {...disclosure} />
+      <Add {...disclosure} toggle={toggle} setToggle={setToggle} />
     </>
   )
 }
