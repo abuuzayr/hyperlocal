@@ -9,13 +9,9 @@ const UpdateListing = z
   })
   .nonstrict()
 
-export default resolver.pipe(
-  resolver.zod(UpdateListing),
-  resolver.authorize(),
-  async ({ id, ...data }) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const listing = await db.listing.update({ where: { id }, data })
+export default resolver.pipe(resolver.zod(UpdateListing), async ({ id, ...data }) => {
+  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+  const listing = await db.listing.update({ where: { id }, data })
 
-    return listing
-  }
-)
+  return listing
+})
