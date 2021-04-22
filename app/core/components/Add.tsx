@@ -1,5 +1,6 @@
+import axios from "axios"
 import { useRef } from "react"
-import { useMutation } from "blitz"
+import { useMutation, getAntiCSRFToken } from "blitz"
 import {
   Modal,
   ModalOverlay,
@@ -16,11 +17,54 @@ import { FORM_ERROR } from "app/core/components/Form"
 import { CreateListing } from "app/auth/validations"
 
 const Add = (props) => {
-  const { isOpen, onClose } = props
+  const { isOpen, onClose, toggle, setToggle } = props
   const toast = useToast()
   const [createListingMutation] = useMutation(createListing)
-
   const initialRef = useRef<HTMLInputElement>(null)
+  const uploadImage = async (file) => {
+    if (file.size / 1024 > 5000) {
+      toast({
+        title: "Size error",
+        description: "File size exceeds 5MB, please select another file",
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      })
+      return false
+    }
+    toast({
+      title: `Uploading ${file["name"]}...`,
+      status: "info",
+      isClosable: true,
+    })
+    const antiCSRFToken = getAntiCSRFToken()
+    if (antiCSRFToken) {
+      var formData = new FormData()
+      const filename = `${new Date().getTime()}_${encodeURI(file["name"])}`
+      formData.append("image", file, filename)
+      try {
+        const imageUrl = await axios.post("/api/uploadImage", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "anti-csrf": antiCSRFToken,
+          },
+        })
+        if (imageUrl) {
+          toast.closeAll()
+          return filename
+        }
+      } catch (e) {
+        toast({
+          title: "File upload error",
+          description: `Error uploading ${file["name"]}, please try again`,
+          status: "error",
+          duration: 6000,
+          isClosable: true,
+        })
+        return false
+      }
+    }
+  }
 
   return (
     <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose} size={"xl"}>
@@ -30,11 +74,24 @@ const Add = (props) => {
         <ModalCloseButton />
         <ModalBody pb={6}>
           <ListingForm
+            submitText="Add"
             schema={CreateListing}
             initialValues={{ namep: "" }}
             onSubmit={async (values) => {
+              const { img: imgFileList, logo: logoFileList } = values
+              if (imgFileList) {
+                const filename = await uploadImage(imgFileList[0])
+                if (!filename) return
+                values["img"] = `${process.env.CF_WORKER_URL}/${filename}`.replace(/\s/g, "+")
+              }
+              if (logoFileList) {
+                const filename = await uploadImage(logoFileList[0])
+                if (!filename) return
+                values["logo"] = `${process.env.CF_WORKER_URL}/${filename}`.replace(/\s/g, "+")
+              }
               try {
-                await createListingMutation(values)
+                const { namep, ...valuesWithoutHoneypot } = values
+                await createListingMutation(valuesWithoutHoneypot)
                 onClose()
                 toast({
                   title: "Listing created.",
@@ -43,6 +100,7 @@ const Add = (props) => {
                   duration: 6000,
                   isClosable: true,
                 })
+                setToggle(!toggle)
               } catch (error) {
                 return { [FORM_ERROR]: error.toString() }
               }
