@@ -74,10 +74,10 @@ const Navbar = ({ onAddOpen }) => {
               </Button>
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => router.push("?category=product")}>
+              <MenuItem onClick={() => router.push("?category=products")}>
                 <Icon as={FiShoppingBag} mr={5} /> Products
               </MenuItem>
-              <MenuItem onClick={() => router.push("?category=service")}>
+              <MenuItem onClick={() => router.push("?category=services")}>
                 <Icon as={FaRegHandSpock} mr={5} /> Services
               </MenuItem>
               <MenuItem onClick={() => router.push("?category=app")}>
