@@ -126,11 +126,12 @@ const Card = (props) => {
           </Text>
         </Stack>
         <Stack align={"center"} justify={"center"} direction={"row"} mt={4}>
-          {tags.split(",").map((tag) => (
-            <Badge px={2} py={1} bg={"gray.50"} fontWeight={"400"}>
-              {tag}
-            </Badge>
-          ))}
+          {tags &&
+            tags.split(",").map((tag) => (
+              <Badge px={2} py={1} bg={"gray.50"} fontWeight={"400"}>
+                {tag}
+              </Badge>
+            ))}
         </Stack>
         <Stack mt={4} direction={"row"} spacing={4}>
           {social && (
