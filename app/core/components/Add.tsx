@@ -102,7 +102,14 @@ const Add = (props) => {
                 })
                 setToggle(!toggle)
               } catch (error) {
-                return { [FORM_ERROR]: error.toString() }
+                if (error.code === "P2002" && error.meta?.target?.includes("name")) {
+                  // This error comes from Prisma
+                  return {
+                    name: `Name already exists for the category`,
+                  }
+                } else {
+                  return { [FORM_ERROR]: error.toString() }
+                }
               }
             }}
           />
