@@ -27,7 +27,7 @@ const GridSkeleton = () => {
   )
 }
 
-const GridComponentWithQuery = (props) => {
+const GridComponentWithQuery = ({ toggle }) => {
   const query = useRouterQuery()
   const where = {}
   if (query.category) {
@@ -55,7 +55,16 @@ const GridComponentWithQuery = (props) => {
       },
     ]
   }
-  const [{ listings }] = useQuery(getListings, { where, orderBy: [], skip: 0, take: 12 })
+  const [{ listings }, { refetch }] = useQuery(getListings, {
+    where,
+    orderBy: [],
+    skip: 0,
+    take: 25,
+  })
+
+  useEffect(() => {
+    refetch()
+  }, [toggle])
 
   return <>{listings && listings.map((card) => <Card data={card} />)}</>
 }
@@ -66,7 +75,7 @@ const WrappedGridComponent = (props) => (
   </Suspense>
 )
 
-const GridComponent = () => {
+const GridComponent = (props) => {
   const [scrolled, setScrolled] = useState(false)
   const gridRef = useRef(null)
   const query = useRouterQuery()
@@ -86,7 +95,7 @@ const GridComponent = () => {
     <div ref={gridRef}>
       <Container as={Stack} maxW={"7xl"} py={10} id="listings-grid">
         <Box w="100%" mx="auto" sx={{ columnCount: [1, 2, 4], columnGap: "1.5rem" }}>
-          <WrappedGridComponent />
+          <WrappedGridComponent {...props} />
         </Box>
       </Container>
     </div>
