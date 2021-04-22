@@ -53,7 +53,7 @@ export function Form<S extends z.ZodType<any, any>>({
 
           <style global jsx>{`
             .form > * + * {
-              margin-top: 1rem;
+              margin-top: 0.5rem;
             }
           `}</style>
         </form>
