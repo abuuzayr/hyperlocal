@@ -1,18 +1,22 @@
 import { forwardRef, PropsWithoutRef } from "react"
 import { useField } from "react-final-form"
+import { FormControl, FormLabel, Input, FormErrorMessage, FormHelperText } from "@chakra-ui/react"
 
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
   name: string
   /** Field label. */
   label: string
+  /** Helper text. */
+  helperText?: string
   /** Field type. Doesn't include radio buttons and checkboxes */
   type?: "text" | "password" | "email" | "number"
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
+  visibility?: string
 }
 
 export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ name, label, outerProps, ...props }, ref) => {
+  ({ name, label, helperText, outerProps, visibility, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -22,36 +26,29 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
 
     const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
 
+    let setVisibility = {}
+    if (visibility === "hidden") {
+      setVisibility = {
+        visibility: "hidden",
+        position: "absolute",
+        marginBottom: -90210,
+      }
+    }
+
     return (
-      <div {...outerProps}>
-        <label>
+      <FormControl
+        {...outerProps}
+        isInvalid={touched && normalizedError}
+        isRequired={props.required}
+        {...setVisibility}
+      >
+        <FormLabel fontSize="xs" mb={1}>
           {label}
-          <input {...input} disabled={submitting} {...props} ref={ref} />
-        </label>
-
-        {touched && normalizedError && (
-          <div role="alert" style={{ color: "red" }}>
-            {normalizedError}
-          </div>
-        )}
-
-        <style jsx>{`
-          label {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            font-size: 1rem;
-          }
-          input {
-            font-size: 1rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            border: 1px solid purple;
-            appearance: none;
-            margin-top: 0.5rem;
-          }
-        `}</style>
-      </div>
+        </FormLabel>
+        <Input {...input} disabled={submitting} {...props} ref={ref} />
+        <FormHelperText fontSize="xs">{props.helperText}</FormHelperText>
+        <FormErrorMessage>{normalizedError}</FormErrorMessage>
+      </FormControl>
     )
   }
 )
