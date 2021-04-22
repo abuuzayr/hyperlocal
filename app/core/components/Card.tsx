@@ -20,8 +20,8 @@ import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri"
 const categoryColors = {
   products: "#2ecc71",
   services: "#3498db",
-  apps: "#9b59b6",
-  communities: "#e74c3c",
+  app: "#9b59b6",
+  community: "#e74c3c",
 }
 
 const Card = (props) => {
