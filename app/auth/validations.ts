@@ -31,3 +31,15 @@ export const ChangePassword = z.object({
   currentPassword: z.string(),
   newPassword: password,
 })
+
+export const CreateListing = z.object({
+  namep: z.string().max(0, { message: " " }).optional(),
+  name: z.string(),
+  category: z.string(),
+  tagline: z.string().min(1).max(80),
+  img: z.string().url().optional(),
+  logo: z.string().url().optional(),
+  tags: z.string().optional(),
+  website: z.string().url().optional(),
+  social: z.string().url().optional(),
+})
