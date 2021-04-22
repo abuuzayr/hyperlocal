@@ -31,7 +31,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
       setVisibility = {
         visibility: "hidden",
         position: "absolute",
-        marginBottom: -90210,
+        marginLeft: -90210,
       }
     }
 
