@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useEffect } from "react"
 import { useRouter, useRouterQuery, useQuery, Link } from "blitz"
 import {
   Box,
@@ -28,9 +28,13 @@ interface StatsCardProps {
   stat: string
   icon: IconType
   color: string
+  toggle: boolean
 }
-const StatCount = ({ category }) => {
-  const [count] = useQuery(getListingCount, { where: { category } })
+const StatCount = ({ category, toggle }) => {
+  const [count, { refetch }] = useQuery(getListingCount, { where: { category } })
+  useEffect(() => {
+    refetch()
+  }, [toggle])
   return (
     <StatNumber fontSize={"2xl"} fontWeight={"medium"} textAlign={"right"}>
       {count}
@@ -43,7 +47,7 @@ const WrappedStatNumber = (props) => (
   </Suspense>
 )
 function StatsCard(props: StatsCardProps) {
-  const { title, stat, icon, color } = props
+  const { title, stat, icon, color, toggle } = props
   const router = useRouter()
   const query = useRouterQuery()
   const active = query.hasOwnProperty("category") && query.category === stat
@@ -83,7 +87,7 @@ function StatsCard(props: StatsCardProps) {
             <StatLabel fontWeight={"medium"} isTruncated textAlign={"right"}>
               {title}
             </StatLabel>
-            <WrappedStatNumber category={stat} />
+            <WrappedStatNumber category={stat} toggle={toggle} />
           </Box>
         </Flex>
       </Stat>
@@ -91,15 +95,33 @@ function StatsCard(props: StatsCardProps) {
   )
 }
 
-const Categories = () => {
+const Categories = (props) => {
   const router = useRouter()
   return (
     <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard title={"Products"} stat={"product"} icon={FiShoppingBag} color={"#2ecc71"} />
-        <StatsCard title={"Services"} stat={"service"} icon={FaRegHandSpock} color={"#3498db"} />
-        <StatsCard title={"Apps"} stat={"app"} icon={RiAppsLine} color={"#9b59b6"} />
-        <StatsCard title={"Communities"} stat={"community"} icon={BsPeople} color={"#e74c3c"} />
+        <StatsCard
+          title={"Products"}
+          stat={"products"}
+          icon={FiShoppingBag}
+          color={"#2ecc71"}
+          {...props}
+        />
+        <StatsCard
+          title={"Services"}
+          stat={"services"}
+          icon={FaRegHandSpock}
+          color={"#3498db"}
+          {...props}
+        />
+        <StatsCard title={"Apps"} stat={"app"} icon={RiAppsLine} color={"#9b59b6"} {...props} />
+        <StatsCard
+          title={"Communities"}
+          stat={"community"}
+          icon={BsPeople}
+          color={"#e74c3c"}
+          {...props}
+        />
       </SimpleGrid>
       <Box maxW="3xl" mx={"auto"} my={8} mb={-2}>
         <InputGroup>
