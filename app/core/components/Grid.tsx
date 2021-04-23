@@ -41,7 +41,10 @@ const GridSkeleton = () => {
 const GridComponentWithQuery = ({ toggle }) => {
   const query = useRouterQuery()
   const where = {}
-  if (query.category) {
+  if (
+    query.category &&
+    ["products", "services", "app", "community"].includes(query.category as string)
+  ) {
     where["category"] = query.category
   }
   if (query.search) {
@@ -81,13 +84,13 @@ const GridComponentWithQuery = ({ toggle }) => {
   interface SX {
     columnCount?: number[]
     columnGap?: string
-    display?: string
+    display?: string | string[]
     gridTemplateColumns?: string
     gap?: string
   }
   let sx: SX = { columnCount: [1, 2, 4], columnGap: "1.5rem" }
   if (listingPages[0].count <= 4) {
-    sx = { display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }
+    sx = { display: ["block", "grid"], gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }
   }
 
   return (
