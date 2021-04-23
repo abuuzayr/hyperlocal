@@ -10,7 +10,13 @@ export function ListingForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
   return (
     <Form<S> {...props}>
       <Stack direction={["column", "row"]} spacing={3}>
-        <LabeledTextField name="name" label="Name" placeholder="Name" required />
+        <LabeledTextField
+          name="name"
+          label="Name"
+          placeholder="Name"
+          required
+          ref={props.initialRef}
+        />
         <LabeledTextField name="namep" label="NameP" placeholder="NameP" visibility="hidden" />
         <LabeledSelectField
           name="category"

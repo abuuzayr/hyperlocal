@@ -13,6 +13,7 @@ export interface FormProps<S extends z.ZodType<any, any>>
   schema?: S
   onSubmit: FinalFormProps<z.infer<S>>["onSubmit"]
   initialValues?: FinalFormProps<z.infer<S>>["initialValues"]
+  initialRef?: HTMLInputElement
 }
 
 export function Form<S extends z.ZodType<any, any>>({
