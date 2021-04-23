@@ -1,6 +1,17 @@
-import { Suspense, useRef, useEffect, useState } from "react"
-import { useQuery, useRouterQuery } from "blitz"
-import { Container, Stack, Box, SkeletonCircle, SkeletonText, Center } from "@chakra-ui/react"
+import { Suspense, useRef, useEffect, useState, Fragment } from "react"
+import { useInfiniteQuery, useRouterQuery } from "blitz"
+import {
+  Container,
+  Stack,
+  Box,
+  SkeletonCircle,
+  SkeletonText,
+  Center,
+  Spinner,
+  Button,
+  Icon,
+} from "@chakra-ui/react"
+import { IoInfiniteOutline } from "react-icons/io5"
 import Card from "app/core/components/Card"
 import getListings from "app/listings/queries/getListings"
 
@@ -55,18 +66,67 @@ const GridComponentWithQuery = ({ toggle }) => {
       },
     ]
   }
-  const [{ listings }, { refetch }] = useQuery(getListings, {
-    where,
-    orderBy: [],
-    skip: 0,
-    take: 25,
+
+  const [
+    listingPages,
+    { isFetchingNextPage, fetchNextPage, hasNextPage, refetch },
+  ] = useInfiniteQuery(getListings, (page = { take: 2, skip: 0, where }) => page, {
+    getNextPageParam: (lastPage) => lastPage.nextPage,
   })
 
   useEffect(() => {
     refetch()
   }, [toggle])
 
-  return <>{listings && listings.map((card) => <Card data={card} />)}</>
+  interface SX {
+    columnCount?: number[]
+    columnGap?: string
+    display?: string
+    gridTemplateColumns?: string
+    gap?: string
+  }
+  let sx: SX = { columnCount: [1, 2, 4], columnGap: "1.5rem" }
+  if (listingPages[0].count <= 4) {
+    sx = { display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }
+  }
+
+  return (
+    <>
+      {listingPages && (
+        <>
+          <Box w="100%" mx="auto" sx={sx}>
+            {listingPages.map((page, i) => (
+              <Fragment key={i}>
+                {page.listings.map((card) => (
+                  <Card data={card} />
+                ))}
+              </Fragment>
+            ))}
+          </Box>
+          <Box textAlign="center">
+            {isFetchingNextPage ? (
+              <Spinner />
+            ) : hasNextPage ? (
+              <Button
+                onClick={() => fetchNextPage()}
+                disabled={!hasNextPage || !!isFetchingNextPage}
+                colorScheme="red"
+                variant="outline"
+                borderRadius={0}
+                border="none"
+                _hover={{
+                  bg: "red.100",
+                }}
+              >
+                <Icon as={IoInfiniteOutline} mr={2} boxSize={25} />
+                Load more cards
+              </Button>
+            ) : null}
+          </Box>
+        </>
+      )}
+    </>
+  )
 }
 
 const WrappedGridComponent = (props) => (
@@ -94,9 +154,7 @@ const GridComponent = (props) => {
   return (
     <div ref={gridRef}>
       <Container as={Stack} maxW={"7xl"} py={10} id="listings-grid">
-        <Box w="100%" mx="auto" sx={{ columnCount: [1, 2, 4], columnGap: "1.5rem" }}>
-          <WrappedGridComponent {...props} />
-        </Box>
+        <WrappedGridComponent {...props} />
       </Container>
     </div>
   )
