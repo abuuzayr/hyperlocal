@@ -107,85 +107,59 @@ const Card = (props) => {
             >
               {category}
             </Text>
-            <Image src={img} layout={"cover"} />
-            <Tooltip
-              label="Click to like this listing!"
-              placement="right-end"
-              bg="red.100"
-              color="gray.700"
-            >
-              <Stack
-                direction="column"
-                position={"absolute"}
-                top={3}
-                right={3}
-                textAlign={"center"}
-              >
-                <Icon
-                  as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
-                  color={liked.includes(id) ? "red.500" : "white"}
-                  boxSize={8}
-                  cursor={"pointer"}
-                  _hover={{
-                    color: "red.500",
-                  }}
-                  mb={-2}
-                  onClick={addLike}
-                />
-                <Text fontSize={10} mt={0} as="div">
-                  {likes}
-                </Text>
-              </Stack>
-            </Tooltip>
+            <Image src={img} objectFit="cover" />
+            <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
+              <Icon
+                as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
+                color={liked.includes(id) ? "red.500" : "white"}
+                boxSize={8}
+                cursor={"pointer"}
+                _hover={{
+                  color: "red.500",
+                }}
+                mb={-2}
+                onClick={addLike}
+              />
+              <Text fontSize={10} mt={0} as="div">
+                {likes}
+              </Text>
+            </Stack>
           </Box>
         ) : (
-          <Tooltip
-            label="Click to like this listing!"
-            placement="right-end"
-            bg="red.100"
-            color="gray.700"
-          >
-            <Box h={"60px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
-              <Text
-                color={"white"}
-                bg={categoryColors[category]}
-                textTransform={"uppercase"}
-                fontWeight={800}
-                fontSize={"xs"}
-                letterSpacing={1.1}
-                borderRadius={10}
-                px={3}
-                position={"absolute"}
-                top={3}
-                left={3}
-              >
-                {category}
+          <Box h={"60px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
+            <Text
+              color={"white"}
+              bg={categoryColors[category]}
+              textTransform={"uppercase"}
+              fontWeight={800}
+              fontSize={"xs"}
+              letterSpacing={1.1}
+              borderRadius={10}
+              px={3}
+              position={"absolute"}
+              top={3}
+              left={3}
+            >
+              {category}
+            </Text>
+            <Image src={img} objectFit="cover" />
+            <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
+              <Icon
+                as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
+                color={liked.includes(id) || !img ? "red.500" : "white"}
+                boxSize={8}
+                cursor={"pointer"}
+                _hover={{
+                  color: "red.500",
+                }}
+                mb={-2}
+                onClick={addLike}
+              />
+              <Text fontSize={10} mt={0} as="div">
+                {likes}
               </Text>
-              <Image src={img} layout={"cover"} />
-              <Stack
-                direction="column"
-                position={"absolute"}
-                top={3}
-                right={3}
-                textAlign={"center"}
-              >
-                <Icon
-                  as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
-                  color={liked.includes(id) || !img ? "red.500" : "white"}
-                  boxSize={8}
-                  cursor={"pointer"}
-                  _hover={{
-                    color: "red.500",
-                  }}
-                  mb={-2}
-                  onClick={addLike}
-                />
-                <Text fontSize={10} mt={0} as="div">
-                  {likes}
-                </Text>
-              </Stack>
-            </Box>
-          </Tooltip>
+            </Stack>
+          </Box>
         )}
         {logo && (
           <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
