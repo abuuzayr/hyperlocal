@@ -82,12 +82,18 @@ const Add = (props) => {
               if (imgFileList) {
                 const filename = await uploadImage(imgFileList[0])
                 if (!filename) return
-                values["img"] = `${process.env.CF_WORKER_URL}/${filename}`.replace(/\s/g, "+")
+                values["img"] = `${process.env.NEXT_PUBLIC_CF_WORKER_URL}/${filename}`.replace(
+                  /\s/g,
+                  "+"
+                )
               }
               if (logoFileList) {
                 const filename = await uploadImage(logoFileList[0])
                 if (!filename) return
-                values["logo"] = `${process.env.CF_WORKER_URL}/${filename}`.replace(/\s/g, "+")
+                values["logo"] = `${process.env.NEXT_PUBLIC_CF_WORKER_URL}/${filename}`.replace(
+                  /\s/g,
+                  "+"
+                )
               }
               try {
                 const { namep, ...valuesWithoutHoneypot } = values
