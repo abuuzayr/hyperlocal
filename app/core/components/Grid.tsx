@@ -19,7 +19,7 @@ const GridSkeleton = () => {
   return (
     <>
       {Array(...Array(12)).map((v, i) => (
-        <Center py={0} d="inline-block" maxW={"445px"} w={"full"} key={v}>
+        <Center py={0} d="inline-block" maxW={"445px"} w={"full"} key={i}>
           <Box
             p={6}
             overflow={"hidden"}
