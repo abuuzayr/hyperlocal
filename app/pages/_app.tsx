@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const { reset } = useQueryErrorResetBoundary()
   // Load Panelbear only once during the app lifecycle
-  usePanelbear(process.env.PANELBEAR_SITE_ID, {})
+  usePanelbear(process.env.NEXT_PUBLIC_PANELBEAR_SITE_ID, {})
 
   return (
     <ChakraProvider theme={theme}>
