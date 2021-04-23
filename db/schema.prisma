@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url      = env("QOVERY_DATABASE_MY_DB_CONNECTION_URI")
 }
 
 generator client {
