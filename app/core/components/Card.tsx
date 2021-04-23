@@ -13,8 +13,9 @@ import {
   Badge,
   Button,
   Icon,
+  Tooltip,
 } from "@chakra-ui/react"
-import { ExternalLinkIcon } from "@chakra-ui/icons"
+import { ExternalLinkIcon, InfoOutlineIcon } from "@chakra-ui/icons"
 import { IoShareSocialOutline } from "react-icons/io5"
 import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri"
 import updateListing from "app/listings/mutations/updateListing"
@@ -79,6 +80,7 @@ const Card = (props) => {
         boxShadow={"2xl"}
         rounded={"md"}
         mb={4}
+        position={"relative"}
       >
         {img ? (
           <Box
@@ -106,58 +108,84 @@ const Card = (props) => {
               {category}
             </Text>
             <Image src={img} layout={"cover"} />
-            <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
-              <Icon
-                as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
-                color={liked.includes(id) ? "red.500" : "white"}
-                boxSize={8}
-                cursor={"pointer"}
-                _hover={{
-                  color: "red.500",
-                }}
-                mb={-2}
-                onClick={addLike}
-              />
-              <Text fontSize={10} mt={0} as="div">
-                {likes}
-              </Text>
-            </Stack>
+            <Tooltip
+              label="Click to like this listing!"
+              placement="right-end"
+              bg="red.100"
+              color="gray.700"
+            >
+              <Stack
+                direction="column"
+                position={"absolute"}
+                top={3}
+                right={3}
+                textAlign={"center"}
+              >
+                <Icon
+                  as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
+                  color={liked.includes(id) ? "red.500" : "white"}
+                  boxSize={8}
+                  cursor={"pointer"}
+                  _hover={{
+                    color: "red.500",
+                  }}
+                  mb={-2}
+                  onClick={addLike}
+                />
+                <Text fontSize={10} mt={0} as="div">
+                  {likes}
+                </Text>
+              </Stack>
+            </Tooltip>
           </Box>
         ) : (
-          <Box h={"60px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
-            <Text
-              color={"white"}
-              bg={categoryColors[category]}
-              textTransform={"uppercase"}
-              fontWeight={800}
-              fontSize={"xs"}
-              letterSpacing={1.1}
-              borderRadius={10}
-              px={3}
-              position={"absolute"}
-              top={3}
-              left={3}
-            >
-              {category}
-            </Text>
-            <Image src={img} layout={"cover"} />
-            <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
-              <Icon
-                as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
-                color={liked.includes(id) || !img ? "red.500" : "white"}
-                boxSize={8}
-                cursor={"pointer"}
-                _hover={{
-                  color: "red.500",
-                }}
-                mb={-2}
-                onClick={addLike}
-              />
-              <Text fontSize={10} mt={0} as="div">
-                {likes}
+          <Tooltip
+            label="Click to like this listing!"
+            placement="right-end"
+            bg="red.100"
+            color="gray.700"
+          >
+            <Box h={"60px"} mt={-6} mx={-6} mb={6} pos={"relative"} overflow={"hidden"}>
+              <Text
+                color={"white"}
+                bg={categoryColors[category]}
+                textTransform={"uppercase"}
+                fontWeight={800}
+                fontSize={"xs"}
+                letterSpacing={1.1}
+                borderRadius={10}
+                px={3}
+                position={"absolute"}
+                top={3}
+                left={3}
+              >
+                {category}
               </Text>
-            </Stack>
-          </Box>
+              <Image src={img} layout={"cover"} />
+              <Stack
+                direction="column"
+                position={"absolute"}
+                top={3}
+                right={3}
+                textAlign={"center"}
+              >
+                <Icon
+                  as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
+                  color={liked.includes(id) || !img ? "red.500" : "white"}
+                  boxSize={8}
+                  cursor={"pointer"}
+                  _hover={{
+                    color: "red.500",
+                  }}
+                  mb={-2}
+                  onClick={addLike}
+                />
+                <Text fontSize={10} mt={0} as="div">
+                  {likes}
+                </Text>
+              </Stack>
+            </Box>
+          </Tooltip>
         )}
         {logo && (
           <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
@@ -217,6 +245,20 @@ const Card = (props) => {
             </Button>
           )}
         </Stack>
+        <Tooltip
+          hasArrow
+          label="See an issue with this listing? Email us at hello@hyperlocal.sg or chat with us!"
+        >
+          <InfoOutlineIcon
+            h={15}
+            position="absolute"
+            bg={"transparent"}
+            right={2}
+            bottom={2}
+            p={0}
+            color="gray.500"
+          />
+        </Tooltip>
       </Box>
     </Center>
   )
