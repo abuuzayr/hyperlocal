@@ -1,6 +1,6 @@
 # create a standard base image that has all the defaults
 FROM node:14-alpine as base
-ARG DATABASE_URL
+ARG QOVERY_DATABASE_HYPERLOCAL_CONNECTION_URI
 ENV NODE_ENV=production
 ENV PATH /home/node/app/node_modules/.bin:$PATH
 ENV TINI_VERSION v0.19.0
@@ -18,7 +18,7 @@ RUN yarn config list && yarn install --frozen-lockfile && yarn cache clean --for
 # create a build image
 FROM base as build
 ENV NODE_ENV=development
-ENV DATABASE_URL=$DATABASE_URL
+ENV QOVERY_DATABASE_HYPERLOCAL_CONNECTION_URI=$QOVERY_DATABASE_HYPERLOCAL_CONNECTION_URI
 COPY --chown=node:node . .
 RUN yarn config list && yarn install && yarn cache clean --force \ 
 	&&blitz prisma migrate deploy --preview-feature \
