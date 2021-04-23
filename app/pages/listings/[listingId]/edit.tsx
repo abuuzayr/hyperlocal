@@ -35,7 +35,7 @@ export const EditListing = () => {
                 ...values,
               })
               await setQueryData(updated)
-              router.push(Routes.ShowListingPage({ [listingId]: updated.id }))
+              // router.push(Routes.ShowListingPage({ [listingId]: updated.id }))
             } catch (error) {
               console.error(error)
               return {

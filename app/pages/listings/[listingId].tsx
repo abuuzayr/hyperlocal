@@ -20,9 +20,9 @@ export const Listing = () => {
         <h1>Listing {listing.id}</h1>
         <pre>{JSON.stringify(listing, null, 2)}</pre>
 
-        <Link href={Routes.EditListingPage({ [listingId]: listing.id })}>
+        {/* <Link href={Routes.EditListingPage({ [listingId]: listing.id })}>
           <a>Edit</a>
-        </Link>
+        </Link> */}
 
         <button
           type="button"
