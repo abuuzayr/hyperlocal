@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useRouter, useRouterQuery, useQuery, Link } from "blitz"
 import {
   Box,
@@ -97,8 +97,13 @@ function StatsCard(props: StatsCardProps) {
 
 const Categories = (props) => {
   const router = useRouter()
+  const params = new URLSearchParams()
+  Object.keys(router.query).forEach((key) => {
+    params.set(key, params[key])
+  })
+  const [search, setSearch] = useState(new URLSearchParams(params).get("search") || "")
   return (
-    <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
+    <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }} id="discover">
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
         <StatsCard
           title={"Products"}
@@ -133,8 +138,9 @@ const Categories = (props) => {
             element={Input}
             minLength={2}
             debounceTimeout={300}
+            value={search}
             onChange={(e) => {
-              console.log(router.query)
+              setSearch(e.target.value)
               const params = new URLSearchParams()
               Object.keys(router.query).forEach((key) => {
                 params.set(key, params[key])
