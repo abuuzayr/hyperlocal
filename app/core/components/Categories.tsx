@@ -55,7 +55,7 @@ function StatsCard(props: StatsCardProps) {
     ...router.query,
     category: stat,
   }
-  if (active) delete nextQuery["category"]
+  if (active) delete nextQuery?.["category"]
   return (
     <Link
       shallow
@@ -138,7 +138,7 @@ const Categories = (props) => {
                 ...router.query,
                 search: e.target.value,
               }
-              if (!e.target.value) delete query["search"]
+              if (!e.target.value) delete query?.["search"]
               router.push(
                 `${router.pathname}${Object.keys(query).length ? "?" : ""}${new URLSearchParams(
                   query

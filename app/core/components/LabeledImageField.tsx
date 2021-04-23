@@ -15,7 +15,7 @@ export interface LabeledImageFieldProps extends PropsWithoutRef<JSX.IntrinsicEle
 export const LabeledImageField = forwardRef<HTMLInputElement, LabeledImageFieldProps>(
   ({ name, label, helperText, outerProps, ...props }, ref) => {
     const {
-      input: { value, onChange, ...input },
+      input: { value, onChange, size, ...input },
       meta: { touched, error, submitError, submitting },
     } = useField(name)
 

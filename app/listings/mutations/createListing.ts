@@ -5,6 +5,8 @@ import * as z from "zod"
 const CreateListing = z
   .object({
     name: z.string(),
+    category: z.string(),
+    tagline: z.string().max(80),
   })
   .nonstrict()
 

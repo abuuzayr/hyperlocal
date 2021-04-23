@@ -142,9 +142,8 @@ const GridComponent = (props) => {
   useEffect(() => {
     if (scrolled) return
     if (query.hasOwnProperty("category") && gridRef && gridRef.current) {
-      const { offsetTop } = gridRef.current
       window.scrollTo({
-        top: offsetTop,
+        top: gridRef?.current?.["offsetTop"],
         left: 0,
         behavior: "smooth",
       })

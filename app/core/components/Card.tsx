@@ -40,8 +40,8 @@ const Card = (props) => {
     likes: originalLikes,
     id,
   } = props.data
-  const [liked, setLiked] = useState([])
-  const [likes, setLikes] = useState(originalLikes)
+  const [liked, setLiked] = useState<number[]>([])
+  const [likes, setLikes] = useState<number>(originalLikes)
   const [updateListingMutation] = useMutation(updateListing)
 
   const addLike = async () => {
