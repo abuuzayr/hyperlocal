@@ -74,7 +74,6 @@ const Add = (props) => {
         <ModalHeader>Add a new listing</ModalHeader>
         <ModalBody pb={6}>
           <ListingForm
-            initialRef={initialRef}
             submitText="Add"
             schema={CreateListing}
             initialValues={{ namep: "" }}
