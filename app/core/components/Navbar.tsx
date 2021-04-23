@@ -5,13 +5,11 @@ import {
   Flex,
   HStack,
   Link,
-  IconButton,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -41,7 +39,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
   </Link>
 )
 
-const Navbar = ({ onAddOpen }) => {
+const Navbar = ({ onAddOpen, loaded }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
 
@@ -60,19 +58,21 @@ const Navbar = ({ onAddOpen }) => {
         </HStack>
         <Flex alignItems={"center"}>
           <Menu>
-            <MenuButton>
-              <Button
-                color={"red.500"}
-                bg={"white"}
-                size={"sm"}
-                mr={3}
-                border={"2px"}
-                borderColor={"red.500"}
-                leftIcon={<TriangleDownIcon />}
-              >
-                Discover
-              </Button>
-            </MenuButton>
+            {loaded && (
+              <MenuButton>
+                <Button
+                  color={"red.500"}
+                  bg={"white"}
+                  size={"sm"}
+                  mr={3}
+                  border={"2px"}
+                  borderColor={"red.500"}
+                  leftIcon={<TriangleDownIcon />}
+                >
+                  Discover
+                </Button>
+              </MenuButton>
+            )}
             <MenuList>
               <MenuItem onClick={() => router.push("?category=products")}>
                 <Icon as={FiShoppingBag} mr={5} /> Products
