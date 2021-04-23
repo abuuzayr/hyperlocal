@@ -53,9 +53,8 @@ function StatsCard(props: StatsCardProps) {
   const active = query.hasOwnProperty("category") && query.category === stat
   const nextQuery = {
     ...router.query,
-    category: stat,
   }
-  if (active) delete nextQuery?.["category"]
+  if (!active) nextQuery["category"] = stat
   return (
     <Link
       shallow
@@ -134,15 +133,18 @@ const Categories = (props) => {
             minLength={2}
             debounceTimeout={300}
             onChange={(e) => {
-              const query = {
-                ...router.query,
-                search: e.target.value,
+              console.log(router.query)
+              const params = new URLSearchParams()
+              Object.keys(router.query).forEach((key) => {
+                params.set(key, params[key])
+              })
+              if (e.target.value) {
+                params.set("search", e.target.value)
+              } else {
+                params.delete("search")
               }
-              if (!e.target.value) delete query?.["search"]
               router.push(
-                `${router.pathname}${Object.keys(query).length ? "?" : ""}${new URLSearchParams(
-                  query
-                )}`,
+                `${router.pathname}${params.toString() ? `?${params.toString()}` : ""}`,
                 undefined,
                 {
                   shallow: true,
