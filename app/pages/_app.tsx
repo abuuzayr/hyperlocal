@@ -20,6 +20,7 @@ const theme = extendTheme({
     heading: "Libre Franklin",
     body: "Inter",
   },
+  scrollBehavior: "smooth",
 })
 
 export default function App({ Component, pageProps }: AppProps) {
