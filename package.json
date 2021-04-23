@@ -30,6 +30,7 @@
     "@emotion/styled": "11.0.0",
     "@fontsource/inter": "4.2.2",
     "@fontsource/libre-franklin": "4.2.2",
+    "@panelbear/panelbear-js": "1.2.0",
     "@prisma/client": "~2.20",
     "axios": "0.21.1",
     "blitz": "0.34.0",

@@ -15,6 +15,8 @@ import "@fontsource/inter/400.css"
 import "@fontsource/inter/700.css"
 import "@fontsource/libre-franklin/700.css"
 
+import { usePanelbear } from "app/core/hooks/usePanelbear"
+
 const theme = extendTheme({
   fonts: {
     heading: "Libre Franklin",
@@ -27,6 +29,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   const router = useRouter()
   const { reset } = useQueryErrorResetBoundary()
+  // Load Panelbear only once during the app lifecycle
+  usePanelbear(process.env.PANELBEAR_SITE_ID, {})
 
   return (
     <ChakraProvider theme={theme}>
