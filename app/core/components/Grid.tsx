@@ -70,7 +70,7 @@ const GridComponentWithQuery = ({ toggle }) => {
   const [
     listingPages,
     { isFetchingNextPage, fetchNextPage, hasNextPage, refetch },
-  ] = useInfiniteQuery(getListings, (page = { take: 2, skip: 0, where }) => page, {
+  ] = useInfiniteQuery(getListings, (page = { take: 25, skip: 0, where }) => page, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
   })
 
