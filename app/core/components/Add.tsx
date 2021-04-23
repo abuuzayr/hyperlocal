@@ -70,10 +70,11 @@ const Add = (props) => {
     <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose} size={"xl"}>
       <ModalOverlay />
       <ModalContent>
+        <ModalCloseButton position="absolute" right={3} top={3} />
         <ModalHeader>Add a new listing</ModalHeader>
-        <ModalCloseButton />
         <ModalBody pb={6}>
           <ListingForm
+            initialRef={initialRef}
             submitText="Add"
             schema={CreateListing}
             initialValues={{ namep: "" }}
