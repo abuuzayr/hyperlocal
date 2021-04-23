@@ -50,7 +50,7 @@ const Hero = () => {
         </Stack>
       </Flex>
       <Flex flex={1}>
-        <Image alt={"Login Image"} objectFit={"cover"} src={"/hero.svg"} />
+        <Image alt={"Hero Image"} objectFit={"cover"} src={"/hero.svg"} boxSize="100%" />
       </Flex>
     </Stack>
   )
