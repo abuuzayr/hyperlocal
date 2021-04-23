@@ -15,11 +15,12 @@ export interface LabeledImageFieldProps extends PropsWithoutRef<JSX.IntrinsicEle
 export const LabeledImageField = forwardRef<HTMLInputElement, LabeledImageFieldProps>(
   ({ name, label, helperText, outerProps, ...props }, ref) => {
     const {
-      input: { value, onChange, size, ...input },
+      input: { value, onChange, ...input },
       meta: { touched, error, submitError, submitting },
     } = useField(name)
 
     const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
+    const { size, ...propsWithoutSize } = props
 
     return (
       <FormControl
@@ -35,7 +36,7 @@ export const LabeledImageField = forwardRef<HTMLInputElement, LabeledImageFieldP
           type="file"
           onChange={({ target }) => onChange(target.files)}
           disabled={submitting}
-          {...props}
+          {...propsWithoutSize}
           ref={ref}
           border="none"
           p={0}

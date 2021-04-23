@@ -18,7 +18,7 @@ export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElem
 export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
   ({ name, label, helperText, outerProps, visibility, ...props }, ref) => {
     const {
-      input: { size, ...input },
+      input,
       meta: { touched, error, submitError, submitting },
     } = useField(name, {
       parse: props.type === "number" ? Number : undefined,
@@ -35,6 +35,8 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
       }
     }
 
+    const { size, ...propsWithoutSize } = props
+
     return (
       <FormControl
         {...outerProps}
@@ -45,7 +47,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
         <FormLabel fontSize="xs" mb={1}>
           {label}
         </FormLabel>
-        <Input {...input} disabled={submitting} {...props} ref={ref} />
+        <Input {...input} disabled={submitting} {...propsWithoutSize} ref={ref} />
         <FormHelperText fontSize="xs">{helperText}</FormHelperText>
         <FormErrorMessage>{normalizedError}</FormErrorMessage>
       </FormControl>

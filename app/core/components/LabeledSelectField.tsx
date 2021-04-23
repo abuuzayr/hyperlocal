@@ -18,13 +18,14 @@ export interface LabeledSelectFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
 export const LabeledSelectField = forwardRef<HTMLSelectElement, LabeledSelectFieldProps>(
   ({ name, label, helperText, options, outerProps, ...props }, ref) => {
     const {
-      input: { size, ...input },
+      input,
       meta: { touched, error, submitError, submitting },
     } = useField(name, {
       parse: props.type === "number" ? Number : undefined,
     })
 
     const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
+    const { size, ...propsWithoutSize } = props
 
     return (
       <FormControl
@@ -35,7 +36,7 @@ export const LabeledSelectField = forwardRef<HTMLSelectElement, LabeledSelectFie
         <FormLabel mb={1} fontSize={"xs"}>
           Category
         </FormLabel>
-        <Select {...input} disabled={submitting} {...props} ref={ref}>
+        <Select {...input} disabled={submitting} {...propsWithoutSize} ref={ref}>
           {options.map((option) => (
             <option value={option.toLowerCase()}>{option}</option>
           ))}
