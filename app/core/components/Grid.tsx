@@ -98,7 +98,7 @@ const GridComponentWithQuery = ({ toggle }) => {
             {listingPages.map((page, i) => (
               <Fragment key={i}>
                 {page.listings.map((card) => (
-                  <Card data={card} />
+                  <Card data={card} key={card.id} />
                 ))}
               </Fragment>
             ))}

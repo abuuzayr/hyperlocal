@@ -38,7 +38,9 @@ export const LabeledSelectField = forwardRef<HTMLSelectElement, LabeledSelectFie
         </FormLabel>
         <Select {...input} disabled={submitting} {...propsWithoutSize} ref={ref}>
           {options.map((option) => (
-            <option value={option.toLowerCase()}>{option}</option>
+            <option value={option.toLowerCase()} key={option}>
+              {option}
+            </option>
           ))}
         </Select>
         <FormHelperText fontSize="xs">{helperText}</FormHelperText>

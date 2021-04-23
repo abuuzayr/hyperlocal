@@ -206,8 +206,8 @@ const Card = (props) => {
         </Stack>
         <Stack align={"center"} justify={"center"} direction={"row"} mt={4}>
           {tags &&
-            tags.split(",").map((tag) => (
-              <Badge px={2} py={1} bg={"gray.50"} fontWeight={"400"}>
+            tags.split(",").map((tag, i) => (
+              <Badge px={2} py={1} bg={"gray.50"} fontWeight={"400"} key={`${tag}-${i}`}>
                 {tag}
               </Badge>
             ))}
