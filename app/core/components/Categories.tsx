@@ -53,13 +53,14 @@ function StatsCard(props: StatsCardProps) {
   const active = query.hasOwnProperty("category") && query.category === stat
   const nextQuery = {
     ...router.query,
+    category: stat,
   }
-  if (!active) nextQuery["category"] = stat
+  let { category, ...queryWithoutCategory } = nextQuery
   return (
     <Link
       shallow
       href={{
-        query: nextQuery,
+        query: active ? { ...queryWithoutCategory } : nextQuery,
       }}
     >
       <Stat
