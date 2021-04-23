@@ -22,25 +22,7 @@ import { FaRegHandSpock } from "react-icons/fa"
 import { RiAppsLine } from "react-icons/ri"
 import { BsPeople } from "react-icons/bs"
 
-const Links = []
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-)
-
 const Navbar = ({ onAddOpen, loaded }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
 
   return (
@@ -50,45 +32,23 @@ const Navbar = ({ onAddOpen, loaded }) => {
           <Box>
             <Avatar size={"sm"} src={"/logo_only.png"} />
           </Box>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-            {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
-            ))}
-          </HStack>
         </HStack>
-        <Flex alignItems={"center"}>
-          <Menu>
-            {loaded && (
-              <MenuButton>
-                <Button
-                  color={"red.500"}
-                  bg={"white"}
-                  size={"sm"}
-                  mr={3}
-                  border={"2px"}
-                  borderColor={"red.500"}
-                  leftIcon={<TriangleDownIcon />}
-                >
-                  Discover
-                </Button>
-              </MenuButton>
-            )}
-            <MenuList>
-              <MenuItem onClick={() => router.push("?category=products")}>
-                <Icon as={FiShoppingBag} mr={5} /> Products
-              </MenuItem>
-              <MenuItem onClick={() => router.push("?category=services")}>
-                <Icon as={FaRegHandSpock} mr={5} /> Services
-              </MenuItem>
-              <MenuItem onClick={() => router.push("?category=app")}>
-                <Icon as={RiAppsLine} mr={5} /> Apps
-              </MenuItem>
-              <MenuItem onClick={() => router.push("?category=community")}>
-                <Icon as={BsPeople} mr={5} /> Communities
-              </MenuItem>
-            </MenuList>
-          </Menu>
 
+        <Flex alignItems={"center"}>
+          <Link href="#discover">
+            <a>
+              <Button
+                color={"red.500"}
+                bg={"white"}
+                size={"sm"}
+                mr={3}
+                border={"2px"}
+                borderColor={"red.500"}
+              >
+                Discover
+              </Button>
+            </a>
+          </Link>
           <Button
             variant={"solid"}
             bg={"red.500"}
@@ -105,16 +65,6 @@ const Navbar = ({ onAddOpen, loaded }) => {
           </Button>
         </Flex>
       </Flex>
-
-      {isOpen ? (
-        <Box pb={4}>
-          <Stack as={"nav"} spacing={4}>
-            {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
-            ))}
-          </Stack>
-        </Box>
-      ) : null}
     </Box>
   )
 }
