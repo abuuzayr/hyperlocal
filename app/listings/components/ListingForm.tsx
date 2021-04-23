@@ -4,6 +4,7 @@ import { LabeledSelectField } from "app/core/components/LabeledSelectField"
 import { LabeledImageField } from "app/core/components/LabeledImageField"
 import * as z from "zod"
 import { Stack } from "@chakra-ui/react"
+export { FORM_ERROR } from "app/core/components/Form"
 
 export function ListingForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   return (
