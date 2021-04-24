@@ -34,13 +34,15 @@ export default function App({ Component, pageProps }: AppProps) {
   usePanelbear(process.env.NEXT_PUBLIC_PANELBEAR_SITE_ID, {})
 
   useLayoutEffect(() => {
-    // Include the Crisp code here, without the <script></script> tags
+    // @ts-ignore
     window.$crisp = []
+    // @ts-ignore
     window.CRISP_WEBSITE_ID = "95d50119-42ab-4fdb-b6d6-9142ed39684c"
     let d = document
     let s = d.createElement("script")
 
     s.src = "https://client.crisp.chat/l.js"
+    // @ts-ignore
     s.async = 1
     d.getElementsByTagName("head")[0].appendChild(s)
   }, [])
