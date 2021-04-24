@@ -14,6 +14,7 @@ import {
   Button,
   Icon,
   Tooltip,
+  Link,
 } from "@chakra-ui/react"
 import { ExternalLinkIcon, InfoOutlineIcon } from "@chakra-ui/icons"
 import { IoShareSocialOutline } from "react-icons/io5"
@@ -188,35 +189,55 @@ const Card = (props) => {
         </Stack>
         <Stack mt={4} direction={"row"} spacing={4}>
           {social && (
-            <Button
+            <Link
               flex={1}
-              fontSize={"sm"}
-              rounded={"md"}
-              _focus={{
-                bg: "gray.200",
+              href={social}
+              target="_blank"
+              rel="noopener nofollow"
+              _hover={{
+                textTransform: "none",
               }}
             >
-              <Icon as={IoShareSocialOutline} mr={2} boxSize={5} />
-              Follow
-            </Button>
+              <Button
+                w={"full"}
+                fontSize={"sm"}
+                rounded={"md"}
+                _focus={{
+                  bg: "gray.200",
+                }}
+              >
+                <Icon as={IoShareSocialOutline} mr={2} boxSize={5} />
+                Follow
+              </Button>
+            </Link>
           )}
           {website && (
-            <Button
+            <Link
               flex={1}
-              fontSize={"sm"}
-              rounded={"md"}
-              bg={"red.500"}
-              color={"white"}
+              href={social}
+              target="_blank"
+              rel="noopener nofollow"
               _hover={{
-                bg: "red.400",
-              }}
-              _focus={{
-                bg: "red.400",
+                textTransform: "none",
               }}
             >
-              Website
-              <ExternalLinkIcon ml={2} />
-            </Button>
+              <Button
+                w={"full"}
+                fontSize={"sm"}
+                rounded={"md"}
+                bg={"red.500"}
+                color={"white"}
+                _hover={{
+                  bg: "red.400",
+                }}
+                _focus={{
+                  bg: "red.400",
+                }}
+              >
+                Website
+                <ExternalLinkIcon ml={2} />
+              </Button>
+            </Link>
           )}
         </Stack>
         <Tooltip
