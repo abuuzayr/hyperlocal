@@ -214,7 +214,7 @@ const Card = (props) => {
           {website && (
             <Link
               flex={1}
-              href={social}
+              href={website}
               target="_blank"
               rel="noopener nofollow"
               _hover={{
