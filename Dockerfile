@@ -28,6 +28,7 @@ USER node
 # create a production image
 FROM base as prod
 ENV NODE_ENV=production
+ENV QOVERY_DATABASE_HYPERLOCAL_CONNECTION_URI=$QOVERY_DATABASE_HYPERLOCAL_CONNECTION_URI
 COPY --chown=node:node --from=build /home/node/app/public /home/node/app/public
 COPY --chown=node:node --from=build /home/node/app/.blitz /home/node/app/.blitz
 COPY --chown=node:node --from=build /home/node/app/db /home/node/app/db
