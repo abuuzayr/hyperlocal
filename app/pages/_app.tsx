@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react"
 import {
   AppProps,
   ErrorComponent,
@@ -31,6 +32,18 @@ export default function App({ Component, pageProps }: AppProps) {
   const { reset } = useQueryErrorResetBoundary()
   // Load Panelbear only once during the app lifecycle
   usePanelbear(process.env.NEXT_PUBLIC_PANELBEAR_SITE_ID, {})
+
+  useLayoutEffect(() => {
+    // Include the Crisp code here, without the <script></script> tags
+    window.$crisp = []
+    window.CRISP_WEBSITE_ID = "95d50119-42ab-4fdb-b6d6-9142ed39684c"
+    let d = document
+    let s = d.createElement("script")
+
+    s.src = "https://client.crisp.chat/l.js"
+    s.async = 1
+    d.getElementsByTagName("head")[0].appendChild(s)
+  }, [])
 
   return (
     <ChakraProvider theme={theme}>
