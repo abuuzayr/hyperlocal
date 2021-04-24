@@ -1,6 +1,6 @@
 import { getSession } from "blitz"
 import axios from "axios"
-import formidable from "formidable-serverless"
+import formidable from "formidable"
 import fs from "fs"
 import hasha from "hasha"
 
@@ -14,24 +14,14 @@ const uploadImage = async (req, res) => {
   try {
     await getSession(req, res)
     if (req.method === "POST") {
-      const form = new formidable.IncomingForm()
+      const form = formidable()
       return new Promise<void>((resolve, reject) => {
         form.parse(req, async (err, fields, files) => {
           const imgObj = files["image"]
           try {
-            console.log(
-              "authObjURL: ",
-              `https://${process.env.BUCKET_ID}:${process.env.BUCKET_KEY}@api.backblazeb2.com/b2api/v2/b2_authorize_account`
-            )
             const authObj = await axios.get(
               `https://${process.env.BUCKET_ID}:${process.env.BUCKET_KEY}@api.backblazeb2.com/b2api/v2/b2_authorize_account`
             )
-            console.log("authObj: ", authObj)
-            console.log(
-              "uploadUrlObj URL: ",
-              `${authObj["data"]["apiUrl"]}/b2api/v2/b2_get_upload_url`
-            )
-
             const uploadUrlObj = await axios.post(
               `${authObj["data"]["apiUrl"]}/b2api/v2/b2_get_upload_url`,
               { bucketId: authObj["data"]["allowed"]["bucketId"] },
@@ -41,7 +31,6 @@ const uploadImage = async (req, res) => {
                 },
               }
             )
-            console.log("uploadUrlObj: ", uploadUrlObj)
             const fileHash = await hasha.fromFile(imgObj["path"], {
               algorithm: "sha1",
             })
