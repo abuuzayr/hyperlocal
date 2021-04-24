@@ -18,11 +18,20 @@ const uploadImage = async (req, res) => {
       return new Promise<void>((resolve, reject) => {
         form.parse(req, async (err, fields, files) => {
           const imgObj = files["image"]
-          console.log(imgObj)
           try {
+            console.log(
+              "authObjURL: ",
+              `https://${process.env.BUCKET_ID}:${process.env.BUCKET_KEY}@api.backblazeb2.com/b2api/v2/b2_authorize_account`
+            )
             const authObj = await axios.get(
               `https://${process.env.BUCKET_ID}:${process.env.BUCKET_KEY}@api.backblazeb2.com/b2api/v2/b2_authorize_account`
             )
+            console.log("authObj: ", authObj)
+            console.log(
+              "uploadUrlObj URL: ",
+              `${authObj["data"]["apiUrl"]}/b2api/v2/b2_get_upload_url`
+            )
+
             const uploadUrlObj = await axios.post(
               `${authObj["data"]["apiUrl"]}/b2api/v2/b2_get_upload_url`,
               { bucketId: authObj["data"]["allowed"]["bucketId"] },
@@ -32,6 +41,7 @@ const uploadImage = async (req, res) => {
                 },
               }
             )
+            console.log("uploadUrlObj: ", uploadUrlObj)
             const fileHash = await hasha.fromFile(imgObj["path"], {
               algorithm: "sha1",
             })
