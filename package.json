@@ -35,7 +35,7 @@
     "axios": "0.21.1",
     "blitz": "0.34.0",
     "final-form": "4.20.2",
-    "formidable": "1.2.2",
+    "formidable-serverless": "1.1.1",
     "framer-motion": "3.2.0",
     "hasha": "5.2.2",
     "prisma": "~2.20",

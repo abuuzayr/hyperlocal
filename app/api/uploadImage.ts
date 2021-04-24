@@ -1,6 +1,6 @@
 import { getSession } from "blitz"
 import axios from "axios"
-import formidable from "formidable"
+import formidable from "formidable-serverless"
 import fs from "fs"
 import hasha from "hasha"
 
@@ -14,10 +14,11 @@ const uploadImage = async (req, res) => {
   try {
     await getSession(req, res)
     if (req.method === "POST") {
-      const form = formidable()
+      const form = new formidable.IncomingForm()
       return new Promise<void>((resolve, reject) => {
         form.parse(req, async (err, fields, files) => {
           const imgObj = files["image"]
+          console.log(imgObj)
           try {
             const authObj = await axios.get(
               `https://${process.env.BUCKET_ID}:${process.env.BUCKET_KEY}@api.backblazeb2.com/b2api/v2/b2_authorize_account`
