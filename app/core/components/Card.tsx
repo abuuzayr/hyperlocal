@@ -72,12 +72,16 @@ const Card = (props) => {
     }
   }, [])
 
+  const boxBgColor = useColorModeValue("gray.100", "gray.900")
+  const iconBgColor = useColorModeValue("white", "gray.700")
+  const badgeBgColor = useColorModeValue("gray.50", "gray.400")
+
   return (
     <Center py={0} d="inline-block" maxW={"445px"} w={"full"}>
       <Box
         p={6}
         overflow={"hidden"}
-        bg={useColorModeValue("white", "gray.400")}
+        bg={useColorModeValue("white", "gray.700")}
         boxShadow={"2xl"}
         rounded={"md"}
         mb={4}
@@ -86,7 +90,7 @@ const Card = (props) => {
         {img ? (
           <Box
             h={"180px"}
-            bg={"gray.100"}
+            bg={boxBgColor}
             mt={-6}
             mx={-6}
             mb={6}
@@ -164,7 +168,7 @@ const Card = (props) => {
         )}
         {logo && (
           <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
-            <Avatar src={logo} alt={"Author"} />
+            <Avatar src={logo} alt={"Author"} bg={iconBgColor} />
           </HStack>
         )}
         <Stack textAlign={"center"}>
@@ -182,7 +186,14 @@ const Card = (props) => {
         <Stack align={"center"} justify={"center"} direction={"row"} mt={4}>
           {tags &&
             tags.split(",").map((tag, i) => (
-              <Badge px={2} py={1} bg={"gray.50"} fontWeight={"400"} key={`${tag}-${i}`}>
+              <Badge
+                px={2}
+                py={1}
+                bg={badgeBgColor}
+                color={"gray.900"}
+                fontWeight={"400"}
+                key={`${tag}-${i}`}
+              >
                 {tag}
               </Badge>
             ))}

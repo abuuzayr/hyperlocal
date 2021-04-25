@@ -73,7 +73,7 @@ function StatsCard(props: StatsCardProps) {
         rounded={"lg"}
         cursor={"pointer"}
         color={active ? "white" : color}
-        bg={active ? color : "white"}
+        bg={active ? color : "transparent"}
         _hover={{
           bg: color,
           color: "white",

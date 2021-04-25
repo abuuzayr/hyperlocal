@@ -15,15 +15,19 @@ import {
   Stack,
   Avatar,
   Icon,
+  IconButton,
+  useColorMode,
 } from "@chakra-ui/react"
 import { AddIcon, TriangleDownIcon } from "@chakra-ui/icons"
 import { FiShoppingBag } from "react-icons/fi"
 import { FaRegHandSpock } from "react-icons/fa"
 import { RiAppsLine } from "react-icons/ri"
 import { BsPeople } from "react-icons/bs"
+import { IoMoon, IoSunny } from "react-icons/io5"
 
 const Navbar = ({ onAddOpen, loaded }) => {
   const router = useRouter()
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <Box px={4}>
@@ -35,15 +39,24 @@ const Navbar = ({ onAddOpen, loaded }) => {
         </HStack>
 
         <Flex alignItems={"center"}>
-          <Link href="#discover">
+          <Link
+            href="#discover"
+            _hover={{
+              textDecoration: "none",
+            }}
+          >
             <a>
               <Button
                 color={"red.500"}
-                bg={"white"}
+                bg={"transparent"}
                 size={"sm"}
                 mr={3}
                 border={"2px"}
                 borderColor={"red.500"}
+                _hover={{
+                  bg: "transparent",
+                  borderColor: "transparent",
+                }}
               >
                 Discover
               </Button>
@@ -54,6 +67,7 @@ const Navbar = ({ onAddOpen, loaded }) => {
             bg={"red.500"}
             color={"white"}
             size={"sm"}
+            mr={3}
             leftIcon={<AddIcon />}
             _hover={{
               bg: "transparent",
@@ -63,6 +77,13 @@ const Navbar = ({ onAddOpen, loaded }) => {
           >
             Add
           </Button>
+          <IconButton
+            size={"sm"}
+            variant={"ghost"}
+            aria-label={"Toggle Color Mode"}
+            onClick={toggleColorMode}
+            icon={colorMode == "light" ? <IoMoon size={18} /> : <IoSunny size={18} />}
+          />
         </Flex>
       </Flex>
     </Box>

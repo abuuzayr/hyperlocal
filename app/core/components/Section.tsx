@@ -1,4 +1,14 @@
-import { Stack, Flex, Button, Text, VStack, Heading, Container, Box } from "@chakra-ui/react"
+import {
+  Stack,
+  Flex,
+  Button,
+  Text,
+  VStack,
+  Heading,
+  Container,
+  Box,
+  useColorModeValue,
+} from "@chakra-ui/react"
 import { AddIcon } from "@chakra-ui/icons"
 
 const Section = ({ onAddOpen }) => {
@@ -7,15 +17,16 @@ const Section = ({ onAddOpen }) => {
       <Box p={4} mb={10} mt={4}>
         <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"} placeItems={"center"}>
           <Heading fontSize={["2xl", "3xl"]}>Know something we don't?</Heading>
-          <Text color={"gray.600"} fontSize={["md", "lg", "xl"]}>
+          <Text color={useColorModeValue("gray.600", "gray.400")} fontSize={["md", "lg", "xl"]}>
             Do you know of a product, service, app or community made by Singaporeans? Do share it
             with us by adding a listing here.
           </Text>
           <Button
             maxW={200}
-            colorScheme={"red"}
             rounded={"md"}
             variant="outline"
+            color={"red.500"}
+            borderColor="red.500"
             _hover={{ bg: "red.500", color: "white" }}
             onClick={onAddOpen}
           >
