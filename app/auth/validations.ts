@@ -32,14 +32,20 @@ export const ChangePassword = z.object({
   newPassword: password,
 })
 
-export const CreateListing = z.object({
-  namep: z.string().max(0, { message: " " }).optional(),
-  name: z.string(),
-  category: z.string(),
-  tagline: z.string().min(1).max(80),
-  img: z.any(),
-  logo: z.any(),
-  tags: z.string().optional(),
-  website: z.string().url().optional(),
-  social: z.string().url().optional(),
-})
+export const CreateListing = z
+  .object({
+    namep: z.string().max(0, { message: " " }).optional(),
+    name: z.string(),
+    category: z.string(),
+    tagline: z.string().min(1).max(80),
+    img: z.any(),
+    logo: z.any(),
+    tags: z.string().optional(),
+    website: z.string().url().optional(),
+    social: z.string().url().optional(),
+  })
+  .refine((data) => data.website || data.social, {
+    message:
+      "The business/app/community should have an online presence. Please enter a social URL or a website.",
+    path: ["website", "social"],
+  })
