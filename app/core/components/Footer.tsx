@@ -16,7 +16,7 @@ import {
   Image,
 } from "@chakra-ui/react"
 import { FiGithub, FiShare2 } from "react-icons/fi"
-import { BiMailSend } from "react-icons/bi"
+import { BiMailSend, BiCodeAlt } from "react-icons/bi"
 import { BsLightningFill } from "react-icons/bs"
 import { IoStatsChart } from "react-icons/io5"
 
@@ -51,7 +51,7 @@ const Footer = () => {
                 </a>
               </Link>
               <IconButton
-                d={["block", "none"]}
+                d={["flex", "none"]}
                 size={"sm"}
                 aria-label={"Share"}
                 icon={<FiShare2 size={18} />}
@@ -79,6 +79,7 @@ const Footer = () => {
           <Stack align={"flex-start"}>
             <ListHeader>About</ListHeader>
             <InternalLink href={"/why"}>Why</InternalLink>
+            <InternalLink href={"/#discover"}>Discover</InternalLink>
             <Link target="_blank" href={"#"}>
               Founder Stories<Text fontSize="sm"> - coming soon!</Text>
             </Link>
@@ -137,6 +138,13 @@ const Footer = () => {
                 <a>@abuuzayr</a>
               </Link>{" "}
               © {new Date().getFullYear()} hyperlocal.sg
+            </Text>
+            <Text fontSize={"xs"} mt={3}>
+              Looking for a <Icon as={BiCodeAlt} boxSize={5} color="blue.500" d={"inline-block"} />{" "}
+              tech job? Check out{" "}
+              <Link href="https://techjobs.sg" textDecor="underline">
+                techjobs.sg
+              </Link>
             </Text>
           </Stack>
         </SimpleGrid>
