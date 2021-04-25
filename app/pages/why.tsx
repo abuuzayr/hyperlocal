@@ -1,14 +1,5 @@
 import { BlitzPage, useRouter } from "blitz"
-import {
-  Box,
-  Container,
-  Stack,
-  Button,
-  Link,
-  Avatar,
-  IconButton,
-  useColorMode,
-} from "@chakra-ui/react"
+import { Heading, Container, Text } from "@chakra-ui/react"
 import Layout from "app/core/layouts/Layout"
 import Navbar from "app/core/components/Navbar"
 import Footer from "app/core/components/Footer"
@@ -20,7 +11,8 @@ const Why: BlitzPage = () => {
       <Navbar onAddOpen={() => {}} />
       <div className="container">
         <Container textAlign="center" py={10}>
-          Why, hello there, stranger!
+          <Heading>Why, hello there, stranger!</Heading>
+          <Text>Are you lost? Because I sure as hell am...</Text>
         </Container>
       </div>
       <Footer />
