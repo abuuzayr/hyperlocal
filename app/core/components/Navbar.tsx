@@ -12,7 +12,11 @@ const Navbar = ({ onAddOpen }) => {
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <HStack spacing={8} alignItems={"center"}>
           <Box>
-            <Avatar size={"sm"} src={"/logo_only.png"} />
+            <InternalLink href="/">
+              <a>
+                <Avatar size={"sm"} src={"/logo_only.png"} />
+              </a>
+            </InternalLink>
           </Box>
         </HStack>
 
