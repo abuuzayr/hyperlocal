@@ -17,7 +17,7 @@ import getListings from "app/listings/queries/getListings"
 
 const GridSkeleton = () => {
   return (
-    <>
+    <Box sx={{ columnCount: [1, 2, 4], columnGap: "1.5rem" }}>
       {Array(...Array(12)).map((v, i) => (
         <Center py={0} d="inline-block" maxW={"445px"} w={"full"} key={i}>
           <Box
@@ -34,7 +34,7 @@ const GridSkeleton = () => {
           </Box>
         </Center>
       ))}
-    </>
+    </Box>
   )
 }
 
