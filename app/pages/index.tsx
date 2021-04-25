@@ -1,4 +1,4 @@
-import { BlitzPage } from "blitz"
+import { BlitzPage, useRouterQuery } from "blitz"
 import { useState, useEffect } from "react"
 import { useDisclosure } from "@chakra-ui/react"
 import Layout from "app/core/layouts/Layout"
@@ -12,14 +12,14 @@ import Add from "app/core/components/Add"
 
 const Home: BlitzPage = () => {
   const disclosure = useDisclosure()
+  const query = useRouterQuery()
   const [toggle, setToggle] = useState(false)
-  const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    setLoaded(true)
-  }, [])
+    if (query?.add && query?.add === "listing") disclosure.onOpen()
+  }, [query])
   return (
     <>
-      <Navbar onAddOpen={disclosure.onOpen} loaded={loaded} />
+      <Navbar onAddOpen={disclosure.onOpen} />
       <div className="container">
         <Hero />
         <Categories toggle={toggle} />
