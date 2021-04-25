@@ -1,32 +1,10 @@
 import { ReactNode } from "react"
-import { useRouter } from "blitz"
-import {
-  Box,
-  Flex,
-  HStack,
-  Link,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  Avatar,
-  Icon,
-  IconButton,
-  useColorMode,
-} from "@chakra-ui/react"
-import { AddIcon, TriangleDownIcon } from "@chakra-ui/icons"
-import { FiShoppingBag } from "react-icons/fi"
-import { FaRegHandSpock } from "react-icons/fa"
-import { RiAppsLine } from "react-icons/ri"
-import { BsPeople } from "react-icons/bs"
+import { Link as InternalLink } from "blitz"
+import { Box, Flex, HStack, Button, Link, Avatar, IconButton, useColorMode } from "@chakra-ui/react"
+import { AddIcon } from "@chakra-ui/icons"
 import { IoMoon, IoSunny } from "react-icons/io5"
 
-const Navbar = ({ onAddOpen, loaded }) => {
-  const router = useRouter()
+const Navbar = ({ onAddOpen }) => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
@@ -40,7 +18,8 @@ const Navbar = ({ onAddOpen, loaded }) => {
 
         <Flex alignItems={"center"}>
           <Link
-            href="#discover"
+            as={InternalLink}
+            href={"/#discover"}
             _hover={{
               textDecoration: "none",
             }}
@@ -62,21 +41,25 @@ const Navbar = ({ onAddOpen, loaded }) => {
               </Button>
             </a>
           </Link>
-          <Button
-            variant={"solid"}
-            bg={"red.500"}
-            color={"white"}
-            size={"sm"}
-            mr={3}
-            leftIcon={<AddIcon />}
-            _hover={{
-              bg: "transparent",
-              color: "red.500",
-            }}
-            onClick={onAddOpen}
-          >
-            Add
-          </Button>
+          <Link as={InternalLink} href={"/?add=listing"} scroll={false}>
+            <a>
+              <Button
+                variant={"solid"}
+                bg={"red.500"}
+                color={"white"}
+                size={"sm"}
+                mr={3}
+                leftIcon={<AddIcon />}
+                _hover={{
+                  bg: "transparent",
+                  color: "red.500",
+                }}
+                onClick={onAddOpen}
+              >
+                Add
+              </Button>
+            </a>
+          </Link>
           <IconButton
             size={"sm"}
             variant={"ghost"}
