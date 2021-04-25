@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useRef } from "react"
-import { useMutation, getAntiCSRFToken } from "blitz"
+import { useMutation, getAntiCSRFToken, useRouter } from "blitz"
 import {
   Modal,
   ModalOverlay,
@@ -19,6 +19,7 @@ import { CreateListing } from "app/auth/validations"
 const Add = (props) => {
   const { isOpen, onClose, toggle, setToggle } = props
   const toast = useToast()
+  const router = useRouter()
   const [createListingMutation] = useMutation(createListing)
   const initialRef = useRef<HTMLInputElement>(null)
   const uploadImage = async (file) => {
@@ -66,8 +67,15 @@ const Add = (props) => {
     }
   }
 
+  const onCloseAndClear = () => {
+    onClose()
+    if (router.query?.add && router.query?.add === "listing") {
+      router.push("/", undefined, { shallow: true })
+    }
+  }
+
   return (
-    <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose} size={"xl"}>
+    <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onCloseAndClear} size={"xl"}>
       <ModalOverlay />
       <ModalContent>
         <ModalCloseButton position="absolute" right={3} top={3} />
