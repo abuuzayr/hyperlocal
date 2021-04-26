@@ -8,7 +8,7 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  useColorModeValue,
+  Text,
   Input,
   InputGroup,
   InputLeftElement,
@@ -29,6 +29,7 @@ interface StatsCardProps {
   icon: IconType
   color: string
   toggle: boolean
+  subtext: string
 }
 const StatCount = ({ category, toggle }) => {
   const [count, { refetch }] = useQuery(getListingCount, { where: { category } })
@@ -47,7 +48,7 @@ const WrappedStatNumber = (props) => (
   </Suspense>
 )
 function StatsCard(props: StatsCardProps) {
-  const { title, stat, icon, color, toggle } = props
+  const { title, stat, icon, color, toggle, subtext } = props
   const router = useRouter()
   const query = useRouterQuery()
   const active = query.hasOwnProperty("category") && query.category === stat
@@ -66,7 +67,7 @@ function StatsCard(props: StatsCardProps) {
       <Stat
         as={"a"}
         px={{ base: 2, md: 4 }}
-        py={"5"}
+        py={1}
         shadow={"xl"}
         border={"3px solid"}
         borderColor={color}
@@ -90,6 +91,11 @@ function StatsCard(props: StatsCardProps) {
             <WrappedStatNumber category={stat} toggle={toggle} />
           </Box>
         </Flex>
+        {subtext && (
+          <Text fontSize={10} as="div">
+            {subtext}
+          </Text>
+        )}
       </Stat>
     </Link>
   )
@@ -111,6 +117,7 @@ const Categories = (props) => {
           icon={FiShoppingBag}
           color={"#2ecc71"}
           {...props}
+          subtext="Physical products"
         />
         <StatsCard
           title={"Services"}
@@ -118,14 +125,23 @@ const Categories = (props) => {
           icon={FaRegHandSpock}
           color={"#3498db"}
           {...props}
+          subtext="Intangible items"
         />
-        <StatsCard title={"Apps"} stat={"app"} icon={RiAppsLine} color={"#9b59b6"} {...props} />
+        <StatsCard
+          title={"Apps"}
+          stat={"app"}
+          icon={RiAppsLine}
+          color={"#9b59b6"}
+          {...props}
+          subtext="Web or mobile applications"
+        />
         <StatsCard
           title={"Communities"}
           stat={"community"}
           icon={BsPeople}
           color={"#e74c3c"}
           {...props}
+          subtext="Groups sharing a purpose"
         />
       </SimpleGrid>
       <Box maxW="3xl" mx={"auto"} my={8} mb={-2}>
