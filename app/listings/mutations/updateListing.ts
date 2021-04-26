@@ -6,6 +6,8 @@ const UpdateListing = z
   .object({
     id: z.number(),
     name: z.string(),
+    category: z.string(),
+    tagline: z.string().max(80),
   })
   .nonstrict()
 
