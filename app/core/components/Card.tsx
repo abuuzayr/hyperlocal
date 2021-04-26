@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useMutation } from "blitz"
+import { useMutation, Link as InternalLink } from "blitz"
 import {
   Box,
   Center,
@@ -16,7 +16,7 @@ import {
   Tooltip,
   Link,
 } from "@chakra-ui/react"
-import { ExternalLinkIcon, InfoOutlineIcon } from "@chakra-ui/icons"
+import { ExternalLinkIcon, InfoOutlineIcon, EditIcon } from "@chakra-ui/icons"
 import { IoShareSocialOutline } from "react-icons/io5"
 import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri"
 import updateListing from "app/listings/mutations/updateListing"
@@ -40,10 +40,12 @@ const Card = (props) => {
     website,
     likes: originalLikes,
     id,
+    createdAt,
   } = props.data
   const [liked, setLiked] = useState<number[]>([])
   const [likes, setLikes] = useState<number>(originalLikes)
   const [updateListingMutation] = useMutation(updateListing)
+  const [isOwner, setIsOwner] = useState(false)
 
   const addLike = async () => {
     try {
@@ -67,8 +69,20 @@ const Card = (props) => {
   }
 
   useEffect(() => {
-    if (localStorage && localStorage.getItem("_liked")) {
-      setLiked(JSON.parse(localStorage.getItem("_liked") || "[]"))
+    if (localStorage) {
+      if (localStorage.getItem("_liked")) {
+        setLiked(JSON.parse(localStorage.getItem("_liked") || "[]"))
+      }
+      if (localStorage.getItem("_listings")) {
+        try {
+          const owns = JSON.parse(localStorage.getItem("_listings") || "")
+          if (owns.hasOwnProperty(id) && owns[id] === new Date(createdAt).getTime()) {
+            setIsOwner(true)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
     }
   }, [])
 
@@ -89,7 +103,7 @@ const Card = (props) => {
       >
         {img ? (
           <Box
-            h={"180px"}
+            maxH={"180px"}
             bg={boxBgColor}
             mt={-6}
             mx={-6}
@@ -265,6 +279,21 @@ const Card = (props) => {
             color="gray.500"
           />
         </Tooltip>
+        {isOwner && (
+          <InternalLink href={`/?edit=${id}`} scroll={false}>
+            <a>
+              <EditIcon
+                h={4}
+                position="absolute"
+                bg={"transparent"}
+                left={2}
+                bottom={2}
+                p={0}
+                color="gray.500"
+              />
+            </a>
+          </InternalLink>
+        )}
       </Box>
     </Center>
   )
