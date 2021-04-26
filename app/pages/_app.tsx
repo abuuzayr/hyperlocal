@@ -1,15 +1,17 @@
 import { useLayoutEffect } from "react"
 import {
   AppProps,
-  ErrorComponent,
   AuthenticationError,
   AuthorizationError,
+  CSRFTokenMismatchError,
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
   Head,
 } from "blitz"
 import { ErrorBoundary } from "react-error-boundary"
 import LoginForm from "app/auth/components/LoginForm"
+import ErrorRedirectHome from "app/core/components/ErrorRedirectHome"
+import Error from "app/core/components/Error"
 
 import { ChakraProvider, extendTheme, Box, BoxProps } from "@chakra-ui/react"
 import { AnimatePresence, motion } from "framer-motion"
@@ -110,14 +112,13 @@ function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
     return <LoginForm onSuccess={resetErrorBoundary} />
   } else if (error instanceof AuthorizationError) {
     return (
-      <ErrorComponent
-        statusCode={error.statusCode}
-        title="Sorry, you are not authorized to access this"
-      />
+      <Error statusCode={error.statusCode} title="Sorry, you are not authorized to access this" />
+    )
+  } else if (error instanceof CSRFTokenMismatchError) {
+    return (
+      <ErrorRedirectHome statusCode={error.statusCode || 400} title={error.message || error.name} />
     )
   } else {
-    return (
-      <ErrorComponent statusCode={error.statusCode || 400} title={error.message || error.name} />
-    )
+    return <Error statusCode={error.statusCode || 400} title={error.message || error.name} />
   }
 }
