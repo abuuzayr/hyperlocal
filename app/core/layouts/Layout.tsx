@@ -1,5 +1,7 @@
 import { ReactNode } from "react"
 import { Head } from "blitz"
+import Navbar from "app/core/components/Navbar"
+import Footer from "app/core/components/Footer"
 
 type LayoutProps = {
   title?: string
@@ -13,8 +15,9 @@ const Layout = ({ title, children }: LayoutProps) => {
         <title>{title || "hyperlocal"}</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-
+      <Navbar />
       {children}
+      <Footer />
     </>
   )
 }
