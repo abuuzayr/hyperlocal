@@ -38,7 +38,18 @@ const Footer = () => {
         <SimpleGrid templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 2fr" }} spacing={8}>
           <Stack spacing={6}>
             <Box>
-              <Image src={"/logo_word.png"} w={200} />
+              <Stack direction={"row"} spacing={3}>
+                <Image src={"/logo_word.png"} w={200} />
+                <Image src={"/singapore.svg"} height={5} display={"inline-block"} boxShadow="lg" />
+              </Stack>
+            </Box>
+            <Box color="gray.500">
+              <Text fontSize="xs" fontStyle="italic">
+                hy·per-lo·cal [ hahy-per-loh-kuhl ]
+              </Text>
+              <Text fontSize="xs">
+                relating to or focused on a very small geographical community, as a neighborhood
+              </Text>
             </Box>
             <Stack direction={"row"} spacing={6}>
               <Link href="https://github.com/abuuzayr/hyperlocal" target="_blank">
@@ -134,7 +145,7 @@ const Footer = () => {
                 </a>
               </Link>{" "}
               by{" "}
-              <Link href="https://github.com/abuuzayr" textDecor="underline">
+              <Link href="https://github.com/abuuzayr" textDecor="underline" target="_blank">
                 <a>@abuuzayr</a>
               </Link>{" "}
               © {new Date().getFullYear()} hyperlocal.sg
@@ -142,7 +153,7 @@ const Footer = () => {
             <Text fontSize={"xs"} mt={3}>
               Looking for a <Icon as={BiCodeAlt} boxSize={5} color="blue.500" d={"inline-block"} />{" "}
               tech job? Check out{" "}
-              <Link href="https://techjobs.sg" textDecor="underline">
+              <Link href="https://techjobs.sg" textDecor="underline" target="_blank">
                 techjobs.sg
               </Link>
             </Text>
