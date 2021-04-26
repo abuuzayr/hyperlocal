@@ -1,3 +1,4 @@
+import { Link as InternalLink } from "blitz"
 import {
   Stack,
   Flex,
@@ -21,17 +22,20 @@ const Section = ({ onAddOpen }) => {
             Do you know of a product, service, app or community made by Singaporeans? Do share it
             with us by adding a listing here.
           </Text>
-          <Button
-            maxW={200}
-            rounded={"md"}
-            variant="outline"
-            color={"red.500"}
-            borderColor="red.500"
-            _hover={{ bg: "red.500", color: "white" }}
-            onClick={onAddOpen}
-          >
-            <AddIcon mr={3} /> Add a new listing
-          </Button>
+          <InternalLink href="/?add=listing" scroll={false}>
+            <a>
+              <Button
+                maxW={200}
+                rounded={"md"}
+                variant="outline"
+                color={"red.500"}
+                borderColor="red.500"
+                _hover={{ bg: "red.500", color: "white" }}
+              >
+                <AddIcon mr={3} /> Add a new listing
+              </Button>
+            </a>
+          </InternalLink>
         </Stack>
       </Box>
       <Flex
