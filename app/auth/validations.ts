@@ -32,7 +32,7 @@ export const ChangePassword = z.object({
   newPassword: password,
 })
 
-export const CreateListing = z
+export const CreateOrUpdateListing = z
   .object({
     namep: z.string().max(0, { message: " " }).optional(),
     name: z.string(),
