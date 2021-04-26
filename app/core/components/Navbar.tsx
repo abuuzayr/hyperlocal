@@ -4,7 +4,7 @@ import { Box, Flex, HStack, Button, Link, Avatar, IconButton, useColorMode } fro
 import { AddIcon } from "@chakra-ui/icons"
 import { IoMoon, IoSunny } from "react-icons/io5"
 
-const Navbar = ({ onAddOpen }) => {
+const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
@@ -58,7 +58,6 @@ const Navbar = ({ onAddOpen }) => {
                   bg: "transparent",
                   color: "red.500",
                 }}
-                onClick={onAddOpen}
               >
                 Add
               </Button>
