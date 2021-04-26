@@ -1,19 +1,25 @@
 import { BlitzPage, useRouterQuery } from "blitz"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDisclosure } from "@chakra-ui/react"
 import Layout from "app/core/layouts/Layout"
 import Hero from "app/core/components/Hero"
 import Categories from "app/core/components/Categories"
 import GridComponent from "app/core/components/Grid"
 import Section from "app/core/components/Section"
-import Add from "app/core/components/Add"
+import ListingModal from "app/core/components/ListingModal"
+import { useIsomorphicLayoutEffect } from "app/core/hooks/useIsomorphicLayoutEffect"
 
 const Home: BlitzPage = () => {
   const disclosure = useDisclosure()
   const query = useRouterQuery()
   const [toggle, setToggle] = useState(false)
-  useEffect(() => {
-    if (query?.add && query?.add === "listing") disclosure.onOpen()
+  useIsomorphicLayoutEffect(() => {
+    if (
+      (query?.add && query?.add === "listing") ||
+      (query?.edit && parseInt(query?.edit as string))
+    ) {
+      if (!disclosure.isOpen) disclosure.onOpen()
+    }
   }, [query])
   return (
     <>
@@ -23,7 +29,7 @@ const Home: BlitzPage = () => {
         <GridComponent toggle={toggle} />
         <Section onAddOpen={disclosure.onOpen} />
       </div>
-      <Add {...disclosure} toggle={toggle} setToggle={setToggle} />
+      <ListingModal {...disclosure} toggle={toggle} setToggle={setToggle} />
     </>
   )
 }
