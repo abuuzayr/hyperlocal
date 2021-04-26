@@ -1,4 +1,3 @@
-import { useLayoutEffect } from "react"
 import {
   AppProps,
   AuthenticationError,
@@ -12,6 +11,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import LoginForm from "app/auth/components/LoginForm"
 import ErrorRedirectHome from "app/core/components/ErrorRedirectHome"
 import Error from "app/core/components/Error"
+import { useIsomorphicLayoutEffect } from "app/core/hooks/useIsomorphicLayoutEffect"
 
 import { ChakraProvider, extendTheme, Box, BoxProps } from "@chakra-ui/react"
 import { AnimatePresence, motion } from "framer-motion"
@@ -38,7 +38,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   // Load Panelbear only once during the app lifecycle
   usePanelbear(process.env.NEXT_PUBLIC_PANELBEAR_SITE_ID, {})
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // @ts-ignore
     window.$crisp = []
     // @ts-ignore
