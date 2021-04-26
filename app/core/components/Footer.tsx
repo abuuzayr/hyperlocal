@@ -53,13 +53,11 @@ const Footer = () => {
             </Box>
             <Stack direction={"row"} spacing={6}>
               <Link href="https://github.com/abuuzayr/hyperlocal" target="_blank">
-                <a>
-                  <IconButton
-                    size={"sm"}
-                    aria-label={"GitHub repository"}
-                    icon={<FiGithub size={18} />}
-                  />
-                </a>
+                <IconButton
+                  size={"sm"}
+                  aria-label={"GitHub repository"}
+                  icon={<FiGithub size={18} />}
+                />
               </Link>
               <IconButton
                 d={["flex", "none"]}
@@ -77,13 +75,11 @@ const Footer = () => {
                 }}
               />
               <Link href="https://app.panelbear.com/share/104rkj82wxFYqkfp64s6fb/" target="_blank">
-                <a>
-                  <IconButton
-                    size={"sm"}
-                    aria-label={"Site statistics"}
-                    icon={<IoStatsChart size={18} />}
-                  />
-                </a>
+                <IconButton
+                  size={"sm"}
+                  aria-label={"Site statistics"}
+                  icon={<IoStatsChart size={18} />}
+                />
               </Link>
             </Stack>
           </Stack>
@@ -140,13 +136,11 @@ const Footer = () => {
             <Text fontSize={"xs"} mt={3}>
               Built with{" "}
               <Link href="https://blitzjs.com/" rel="nofollow noopener">
-                <a>
-                  <Icon as={BsLightningFill} boxSize={5} color="gold" d={"inline-block"} />
-                </a>
+                <Icon as={BsLightningFill} boxSize={5} color="gold" d={"inline-block"} />
               </Link>{" "}
               by{" "}
               <Link href="https://github.com/abuuzayr" textDecor="underline" target="_blank">
-                <a>@abuuzayr</a>
+                @abuuzayr
               </Link>{" "}
               © {new Date().getFullYear()} hyperlocal.sg
             </Text>
