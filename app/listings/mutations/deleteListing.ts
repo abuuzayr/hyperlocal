@@ -8,7 +8,7 @@ const DeleteListing = z
   })
   .nonstrict()
 
-export default resolver.pipe(resolver.zod(DeleteListing), resolver.authorize(), async ({ id }) => {
+export default resolver.pipe(resolver.zod(DeleteListing), async ({ id }) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const listing = await db.listing.deleteMany({ where: { id } })
 
