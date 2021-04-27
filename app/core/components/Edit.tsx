@@ -30,12 +30,12 @@ const Edit = (props) => {
       onSubmit={async (values) => {
         const { img: imgFileList, logo: logoFileList } = values
         if (imgFileList) {
-          const filename = await uploadImage(imgFileList[0], toast)
+          const filename = await uploadImage(imgFileList[0], 400, toast)
           if (!filename) return
           values["img"] = `${process.env.NEXT_PUBLIC_CF_WORKER_URL}/${filename}`.replace(/\s/g, "+")
         }
         if (logoFileList) {
-          const filename = await uploadImage(logoFileList[0], toast)
+          const filename = await uploadImage(logoFileList[0], 100, toast)
           if (!filename) return
           values["logo"] = `${process.env.NEXT_PUBLIC_CF_WORKER_URL}/${filename}`.replace(
             /\s/g,
