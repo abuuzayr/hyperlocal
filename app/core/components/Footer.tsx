@@ -14,12 +14,14 @@ import {
   useColorModeValue,
   Image,
   Button,
+  useToast,
 } from "@chakra-ui/react"
 import { FiGithub, FiShare2 } from "react-icons/fi"
 import { BiMailSend, BiCodeAlt } from "react-icons/bi"
 import { BsLightningFill } from "react-icons/bs"
 import { IoStatsChart } from "react-icons/io5"
 import Alert from "app/core/components/Alert"
+import subscribe from "app/core/utils/subscribe"
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
   return (
@@ -32,6 +34,8 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 const Footer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [alertText, setAlertText] = useState("")
+  const [email, setEmail] = useState("")
+  const toast = useToast()
   useEffect(() => {
     if (alertText) {
       onOpen()
@@ -140,6 +144,8 @@ const Footer = () => {
                 _focus={{
                   bg: "whiteAlpha.300",
                 }}
+                value={email}
+                onChange={(e) => setEmail(e.currentTarget.value)}
               />
               <IconButton
                 bg={useColorModeValue("green.400", "green.800")}
@@ -149,6 +155,10 @@ const Footer = () => {
                 }}
                 aria-label="Subscribe"
                 icon={<BiMailSend />}
+                onClick={async () => {
+                  const subscribed = await subscribe(email, toast)
+                  if (subscribed) setEmail("")
+                }}
               />
             </Stack>
             <Text fontSize={"xs"} mt={3}>
