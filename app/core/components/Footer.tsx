@@ -53,7 +53,7 @@ const Footer = () => {
           <Stack spacing={6}>
             <Box>
               <Stack direction={"row"} spacing={3}>
-                <Image src={"/logo_word.png"} w={200} />
+                <Image src={"/logo_word.png"} w={200} h={23} />
                 <Image src={"/singapore.svg"} height={5} display={"inline-block"} boxShadow="lg" />
               </Stack>
             </Box>
