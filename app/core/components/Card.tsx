@@ -197,7 +197,7 @@ const Card = (props) => {
             {tagline}
           </Text>
         </Stack>
-        <Stack align={"center"} justify={"center"} direction={"row"} mt={4}>
+        <Stack align={"center"} justify={"center"} direction={"row"} mt={4} flexWrap="wrap">
           {tags &&
             tags.split(",").map((tag, i) => (
               <Badge
@@ -207,12 +207,13 @@ const Card = (props) => {
                 color={"gray.900"}
                 fontWeight={"400"}
                 key={`${tag}-${i}`}
+                mb={2}
               >
                 {tag}
               </Badge>
             ))}
         </Stack>
-        <Stack mt={4} direction={"row"} spacing={4}>
+        <Stack mt={2} direction={"row"} spacing={4}>
           {social && (
             <Link
               flex={1}
