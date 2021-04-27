@@ -21,7 +21,7 @@ export function ListingForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
             "Products (Physical products)",
             "Services (Intangible items)",
             "App (Web/mobile apps)",
-            "Community (Groups with common purpose)",
+            "Community",
           ]}
         />
       </Stack>
