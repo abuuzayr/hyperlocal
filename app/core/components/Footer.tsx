@@ -113,7 +113,7 @@ const Footer = () => {
               variant="link"
               onClick={() => setAlertText("edit")}
               fontWeight="normal"
-              color="gray.700"
+              color={useColorModeValue("gray.700", "gray.200")}
               lineHeight={6}
             >
               Edit a listing
@@ -122,7 +122,7 @@ const Footer = () => {
               variant="link"
               onClick={() => setAlertText("delete")}
               fontWeight="normal"
-              color="gray.700"
+              color={useColorModeValue("gray.700", "gray.200")}
               lineHeight={6}
             >
               Delete a listing
