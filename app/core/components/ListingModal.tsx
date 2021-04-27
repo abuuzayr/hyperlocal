@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react"
 import Add from "app/core/components/Add"
 import Edit from "app/core/components/Edit"
+import DeleteButton from "app/core/components/DeleteButton"
 
 const ListingModal = (props) => {
   const { isOpen, onClose } = props
@@ -50,6 +51,9 @@ const ListingModal = (props) => {
           <Button onClick={onCloseAndClear} mt={2}>
             Cancel
           </Button>
+          {UPDATE && (
+            <DeleteButton listingId={UPDATE} onDelete={() => onClose() && router.push("/")} />
+          )}
         </ModalBody>
       </ModalContent>
     </Modal>
