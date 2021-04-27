@@ -17,22 +17,31 @@ export function ListingForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
           label="Category"
           placeholder="Select Category"
           required
-          options={["Products", "Services", "App", "Community"]}
+          options={[
+            "Products (Physical products)",
+            "Services (Intangible items)",
+            "App (Web/mobile apps)",
+            "Community (Groups with common purpose)",
+          ]}
         />
       </Stack>
       <LabeledTextField
-        label="Tagline (80 characters)"
+        label="Tagline - description of the listing in 80 characters"
         name="tagline"
         placeholder="Keep it short and sweet!"
         required
         maxLength={80}
       />
       <Stack direction={["column", "row"]} spacing={3} w={"100%"}>
-        <LabeledImageField label="Feature image" name="img" helperText="Max size: 5MB" />
+        <LabeledImageField
+          label="Feature image (top of card)"
+          name="img"
+          helperText="Max size: 5MB"
+        />
         <LabeledImageField label="Logo" name="logo" helperText="Max size: 500KB" />
       </Stack>
       <LabeledTextField
-        label="Tags"
+        label="Tags (comma delimited labels)"
         name="tags"
         placeholder="e.g. Sneakers, Music, Food"
         helperText="Only 3 tags will be shown"
