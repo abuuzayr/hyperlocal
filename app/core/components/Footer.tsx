@@ -1,24 +1,25 @@
-import { ReactNode } from "react"
+import { ReactNode, useState, useEffect } from "react"
 import { Link as InternalLink } from "blitz"
 import {
   Link,
   Box,
-  chakra,
   Container,
   SimpleGrid,
   Stack,
   Text,
-  VisuallyHidden,
+  useDisclosure,
   Input,
   Icon,
   IconButton,
   useColorModeValue,
   Image,
+  Button,
 } from "@chakra-ui/react"
 import { FiGithub, FiShare2 } from "react-icons/fi"
 import { BiMailSend, BiCodeAlt } from "react-icons/bi"
 import { BsLightningFill } from "react-icons/bs"
 import { IoStatsChart } from "react-icons/io5"
+import Alert from "app/core/components/Alert"
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
   return (
@@ -29,6 +30,15 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 }
 
 const Footer = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [alertText, setAlertText] = useState("")
+  useEffect(() => {
+    if (alertText) {
+      onOpen()
+    } else {
+      onClose()
+    }
+  }, [alertText])
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
@@ -85,7 +95,6 @@ const Footer = () => {
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>About</ListHeader>
-            <InternalLink href={"/why"}>Why</InternalLink>
             <InternalLink href={"/#discover"}>Discover</InternalLink>
             <Link target="_blank" href={"#"}>
               Founder Stories<Text fontSize="sm"> - coming soon!</Text>
@@ -96,12 +105,24 @@ const Footer = () => {
             <InternalLink href={"/?add=listing"} scroll={false}>
               Add a listing
             </InternalLink>
-            <Link target="_blank" href={"#"}>
+            <Button
+              variant="link"
+              onClick={() => setAlertText("edit")}
+              fontWeight="normal"
+              color="gray.700"
+              lineHeight={6}
+            >
               Edit a listing
-            </Link>
-            <Link target="_blank" href={"#"}>
+            </Button>
+            <Button
+              variant="link"
+              onClick={() => setAlertText("delete")}
+              fontWeight="normal"
+              color="gray.700"
+              lineHeight={6}
+            >
               Delete a listing
-            </Link>
+            </Button>
             <Link target="_blank" href={"https://github.com/abuuzayr/hyperlocal/issues"}>
               Issues
             </Link>
@@ -154,6 +175,7 @@ const Footer = () => {
           </Stack>
         </SimpleGrid>
       </Container>
+      <Alert alertText={alertText} setAlertText={setAlertText} />
     </Box>
   )
 }
