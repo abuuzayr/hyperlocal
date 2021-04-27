@@ -39,7 +39,7 @@ const Alert = ({ alertText, setAlertText }) => {
 
       <AlertDialogContent>
         <AlertDialogHeader>{text[0]}</AlertDialogHeader>
-        <AlertDialogCloseButton />
+        <AlertDialogCloseButton position="absolute" right={3} top={3} />
         <AlertDialogBody>
           {text.slice(1, text.length).map((t) => (
             <Text mt={2}>{t}</Text>
