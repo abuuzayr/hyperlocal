@@ -13,7 +13,7 @@ const Layout = ({ title, children }: LayoutProps) => {
     <>
       <Head>
         <title>
-          {`${title} | hyperlocal.sg` || "hyperlocal.sg - Awesome stuff made by Singaporeans"}
+          {title ? `${title} | hyperlocal.sg` : "hyperlocal.sg - Awesome stuff made by Singaporeans"}
         </title>
         <link rel="icon" href="/favicon.png" />
       </Head>
