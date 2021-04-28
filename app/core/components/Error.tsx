@@ -3,7 +3,7 @@ import { Box, Heading, Container, Text, Button, Stack, Icon } from "@chakra-ui/r
 import Navbar from "app/core/components/Navbar"
 import Footer from "app/core/components/Footer"
 
-const Error = ({ statusCode, title }) => {
+const Error = ({ statusCode, title, text = "" }) => {
   return (
     <>
       <Navbar />
@@ -21,8 +21,9 @@ const Error = ({ statusCode, title }) => {
           </Heading>
           <Text color={"gray.500"}>We're very sorry you had to see this page.</Text>
           <Text color={"gray.500"}>
-            Click on the links above or below to navigate away or click the button below to return
-            to home.
+            {text
+              ? text
+              : "Click on the links above or below to navigate away or click the button below to return to home."}
           </Text>
           <Stack
             direction={"column"}

@@ -14,7 +14,7 @@ import {
   InputLeftElement,
   Spinner,
 } from "@chakra-ui/react"
-import { Search2Icon } from "@chakra-ui/icons"
+import { Search2Icon, CheckCircleIcon } from "@chakra-ui/icons"
 import { DebounceInput } from "react-debounce-input"
 import { IconType } from "react-icons"
 import { FiShoppingBag } from "react-icons/fi"
@@ -82,7 +82,7 @@ function StatsCard(props: StatsCardProps) {
       >
         <Flex justifyContent={"space-between"}>
           <Box my={"auto"} alignContent={"center"}>
-            <Icon as={icon} boxSize={10} />
+            {active ? <Icon as={CheckCircleIcon} boxSize={10} /> : <Icon as={icon} boxSize={10} />}
           </Box>
           <Box pl={{ base: 2, md: 4 }}>
             <StatLabel fontWeight={"medium"} isTruncated textAlign={"right"}>

@@ -213,7 +213,7 @@ const Card = (props) => {
               </Badge>
             ))}
         </Stack>
-        <Stack mt={2} direction={"row"} spacing={4}>
+        <Stack mt={2} direction={"row"} flexWrap="wrap" mb={-2}>
           {social && (
             <Link
               flex={1}
@@ -223,6 +223,7 @@ const Card = (props) => {
               _hover={{
                 textTransform: "none",
               }}
+              mb={2}
             >
               <Button
                 w={"full"}
@@ -246,6 +247,7 @@ const Card = (props) => {
               _hover={{
                 textTransform: "none",
               }}
+              mb={2}
             >
               <Button
                 w={"full"}
