@@ -10,25 +10,19 @@ import {
   Spinner,
   Button,
   Icon,
+  useColorModeValue,
 } from "@chakra-ui/react"
 import { IoInfiniteOutline } from "react-icons/io5"
 import Card from "app/core/components/Card"
 import getListings from "app/listings/queries/getListings"
 
 const GridSkeleton = () => {
+  const bg = useColorModeValue("white", "gray.900")
   return (
     <Box sx={{ columnCount: [1, 2, 2, 4], columnGap: "1.5rem" }}>
       {Array(...Array(12)).map((v, i) => (
         <Center py={0} d="inline-block" maxW={"445px"} w={"full"} key={i}>
-          <Box
-            p={6}
-            overflow={"hidden"}
-            bg={"white"}
-            boxShadow={"2xl"}
-            rounded={"md"}
-            mb={4}
-            h={300}
-          >
+          <Box p={6} overflow={"hidden"} bg={bg} boxShadow={"2xl"} rounded={"md"} mb={4} h={300}>
             <SkeletonCircle size="20" mx={"auto"} my={10} />
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
           </Box>
