@@ -14,10 +14,7 @@ const Home: BlitzPage = () => {
   const query = useRouterQuery()
   const [toggle, setToggle] = useState(false)
   useIsomorphicLayoutEffect(() => {
-    if (
-      (query?.add && query?.add === "listing") ||
-      (query?.edit && parseInt(query?.edit as string))
-    ) {
+    if ((query?.add && query?.add === "listing") || query?.edit) {
       if (!disclosure.isOpen) disclosure.onOpen()
     }
   }, [query])

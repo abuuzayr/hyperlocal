@@ -23,7 +23,7 @@ const ListingModal = (props) => {
   const initialRef = useRef<HTMLInputElement>(null)
 
   const CREATE = router.query?.add && router.query?.add === "listing"
-  const UPDATE = router.query?.edit && parseInt(router.query?.edit as string)
+  const UPDATE = router.query?.edit
 
   const onCloseAndClear = () => {
     onClose()
