@@ -40,7 +40,7 @@ const ListingModal = (props) => {
         <ModalHeader>{CREATE ? "Add a new listing" : "Edit listing"}</ModalHeader>
         <ModalBody pb={6}>
           {CREATE && <Add {...props} toast={toast} onCloseAndClear={onCloseAndClear} />}
-          {UPDATE && UPDATE > 0 && (
+          {UPDATE && (
             <WrappedEdit
               {...props}
               toast={toast}
