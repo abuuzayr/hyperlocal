@@ -1,4 +1,4 @@
-import { Suspense, useRef, useEffect, useState, Fragment } from "react"
+import { Suspense, useRef, useEffect, useState, Fragment, useMemo } from "react"
 import { useInfiniteQuery, useRouterQuery } from "blitz"
 import {
   Container,
@@ -70,11 +70,22 @@ const GridComponentWithQuery = ({ toggle }) => {
     ]
   }
 
+  let orderBy = useMemo(
+    () =>
+      [
+        { id: Math.random() > 0.5 ? "asc" : "desc" },
+        { createdAt: Math.random() > 0.5 ? "asc" : "desc" },
+        { name: Math.random() > 0.5 ? "asc" : "desc" },
+      ].sort(() => Math.random() - 0.5),
+    []
+  )
+
   const [
     listingPages,
     { isFetchingNextPage, fetchNextPage, hasNextPage, refetch },
-  ] = useInfiniteQuery(getListings, (page = { take: 25, skip: 0, where }) => page, {
+  ] = useInfiniteQuery(getListings, (page = { take: 25, skip: 0, where, orderBy }) => page, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
+    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {
