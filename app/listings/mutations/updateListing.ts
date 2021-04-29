@@ -4,7 +4,7 @@ import * as z from "zod"
 
 const UpdateListing = z
   .object({
-    id: z.number(),
+    id: z.string(),
     name: z.string(),
     category: z.string(),
     tagline: z.string().max(80),

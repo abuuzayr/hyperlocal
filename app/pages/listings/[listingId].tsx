@@ -6,7 +6,7 @@ import deleteListing from "app/listings/mutations/deleteListing"
 
 export const Listing = () => {
   const router = useRouter()
-  const listingId = useParam("listingId", "number")
+  const listingId = useParam("listingId", "string")
   const [deleteListingMutation] = useMutation(deleteListing)
   const [listing] = useQuery(getListing, { id: listingId })
 
