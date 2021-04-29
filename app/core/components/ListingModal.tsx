@@ -23,7 +23,7 @@ const ListingModal = (props) => {
   const initialRef = useRef<HTMLInputElement>(null)
 
   const CREATE = router.query?.add && router.query?.add === "listing"
-  const UPDATE = router.query?.edit && parseInt(router.query?.edit as string)
+  const UPDATE = router.query?.edit
 
   const onCloseAndClear = () => {
     onClose()
@@ -40,7 +40,7 @@ const ListingModal = (props) => {
         <ModalHeader>{CREATE ? "Add a new listing" : "Edit listing"}</ModalHeader>
         <ModalBody pb={6}>
           {CREATE && <Add {...props} toast={toast} onCloseAndClear={onCloseAndClear} />}
-          {UPDATE && UPDATE > 0 && (
+          {UPDATE && (
             <WrappedEdit
               {...props}
               toast={toast}
