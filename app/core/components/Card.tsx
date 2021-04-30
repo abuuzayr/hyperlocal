@@ -186,7 +186,7 @@ const Card = (props) => {
         )}
         {logo && (
           <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
-            <Avatar src={logo} alt={`icon for ${name}`} bg={iconBgColor} />
+            <Avatar src={logo} name={`icon for ${name}`} bg={iconBgColor} loading="lazy" />
           </HStack>
         )}
         <Stack textAlign={"center"}>

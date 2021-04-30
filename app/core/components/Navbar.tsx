@@ -14,7 +14,12 @@ const Navbar = () => {
           <Box>
             <InternalLink href="/">
               <a>
-                <Avatar size={"sm"} src={"/logo_only.png"} />
+                <Avatar
+                  size={"sm"}
+                  src={"/logo_only.png"}
+                  name="hyperlocal.sg icon"
+                  loading="lazy"
+                />
               </a>
             </InternalLink>
           </Box>
