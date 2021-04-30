@@ -69,7 +69,7 @@ const Navbar = () => {
             </a>
           </Link>
           <IconButton
-            size={"sm"}
+            size={"lg"}
             variant={"ghost"}
             aria-label={"Toggle Color Mode"}
             onClick={toggleColorMode}
