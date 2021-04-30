@@ -25,15 +25,13 @@ const fromBlob = (imgBlob, width): Promise<{ blob: any; imgHeight: number }> => 
         canvas.getContext("2d")?.drawImage(img, 0, 0, canvas.width, canvas.height)
         canvas.toBlob(
           (blob) =>
-            resolve(
+            resolve({
               // @ts-ignore
-              {
-                blob: new Blob([blob], {
-                  type: "image/webp",
-                }),
-                imgHeight: size.height,
-              }
-            ),
+              blob: new Blob([blob], {
+                type: "image/webp",
+              }),
+              imgHeight: size.height,
+            }),
           "image/webp",
           90
         )
