@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect } from "react"
-import { Link as InternalLink } from "blitz"
+import { Link as InternalLink, Image as NextImage } from "blitz"
 import {
   Link,
   Box,
@@ -53,13 +53,19 @@ const Footer = () => {
           <Stack spacing={6}>
             <Box>
               <Stack direction={"row"} spacing={3}>
-                <Image src={"/logo_word.png"} w={200} h={23} alt="hyperlocal word logo" />
+                <NextImage
+                  src={"/logo_word.png"}
+                  width={200}
+                  height={23}
+                  alt="hyperlocal word logo"
+                />
                 <Image
                   src={"/singapore.svg"}
                   height={5}
                   display={"inline-block"}
                   boxShadow="lg"
                   alt="Singapore flag"
+                  fontSize={1}
                 />
               </Stack>
             </Box>
