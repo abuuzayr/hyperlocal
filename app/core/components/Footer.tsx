@@ -72,7 +72,11 @@ const Footer = () => {
               </Text>
             </Box>
             <Stack direction={"row"} spacing={6}>
-              <Link href="https://github.com/abuuzayr/hyperlocal" target="_blank">
+              <Link
+                href="https://github.com/abuuzayr/hyperlocal"
+                target="_blank"
+                rel="nofollow noopener"
+              >
                 <IconButton
                   size={"sm"}
                   aria-label={"GitHub repository"}
@@ -94,7 +98,11 @@ const Footer = () => {
                   } catch (e) {}
                 }}
               />
-              <Link href="https://app.panelbear.com/share/104rkj82wxFYqkfp64s6fb/" target="_blank">
+              <Link
+                href="https://app.panelbear.com/share/104rkj82wxFYqkfp64s6fb/"
+                target="_blank"
+                rel="nofollow noopener"
+              >
                 <IconButton
                   size={"sm"}
                   aria-label={"Site statistics"}
@@ -133,10 +141,18 @@ const Footer = () => {
             >
               Delete a listing
             </Button>
-            <Link target="_blank" href={"https://github.com/abuuzayr/hyperlocal/issues"}>
+            <Link
+              target="_blank"
+              href={"https://github.com/abuuzayr/hyperlocal/issues"}
+              rel="nofollow noopener"
+            >
               Issues
             </Link>
-            <Link target="_blank" href={"https://github.com/abuuzayr/hyperlocal"}>
+            <Link
+              target="_blank"
+              href={"https://github.com/abuuzayr/hyperlocal"}
+              rel="nofollow noopener"
+            >
               Contribute
             </Link>
           </Stack>
@@ -176,7 +192,12 @@ const Footer = () => {
                 <Icon as={BsLightningFill} boxSize={5} color="gold" d={"inline-block"} />
               </Link>{" "}
               by{" "}
-              <Link href="https://github.com/abuuzayr" textDecor="underline" target="_blank">
+              <Link
+                href="https://github.com/abuuzayr"
+                textDecor="underline"
+                target="_blank"
+                rel="nofollow noopener"
+              >
                 @abuuzayr
               </Link>{" "}
               © {new Date().getFullYear()} hyperlocal.sg
@@ -184,7 +205,12 @@ const Footer = () => {
             <Text fontSize={"xs"} mt={3}>
               Looking for a <Icon as={BiCodeAlt} boxSize={5} color="blue.500" d={"inline-block"} />{" "}
               tech job? Check out{" "}
-              <Link href="https://techjobs.sg" textDecor="underline" target="_blank">
+              <Link
+                href="https://techjobs.sg"
+                textDecor="underline"
+                target="_blank"
+                rel="nofollow noopener"
+              >
                 techjobs.sg
               </Link>
             </Text>
