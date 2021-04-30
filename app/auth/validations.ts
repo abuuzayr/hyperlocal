@@ -39,6 +39,7 @@ export const CreateOrUpdateListing = z
     category: z.string(),
     tagline: z.string().min(1).max(80),
     img: z.any(),
+    imgHeight: z.number().optional(),
     logo: z.any(),
     tags: z.string().optional(),
     website: z.string().url().optional(),

@@ -34,11 +34,15 @@ export function ListingForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
       />
       <Stack direction={["column", "row"]} spacing={3} w={"100%"}>
         <LabeledImageField
-          label="Feature image (top of card)"
+          label="Feature image (top of card) - 5MB max"
           name="img"
-          helperText="Max size: 5MB"
+          helperText="image should be 3:2, e.g. 600wx400h"
         />
-        <LabeledImageField label="Logo" name="logo" helperText="Max size: 500KB" />
+        <LabeledImageField
+          label="Logo - 500KB max"
+          name="logo"
+          helperText="image should be square, e.g. 100x100"
+        />
       </Stack>
       <LabeledTextField
         label="Tags (comma delimited labels)"

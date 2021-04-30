@@ -66,6 +66,7 @@ model Listing {
   category  String
   tagline   String
   img       String?
+  imgHeight Float?
   logo      String?
   name      String
   likes     Int      @default(0)
