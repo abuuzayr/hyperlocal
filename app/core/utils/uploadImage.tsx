@@ -10,7 +10,7 @@ const getHeightWidth = (img, width) => {
 }
 
 // code below is from: https://github.com/alefduarte/image-resize-compress/blob/master/src/fromBlob.js
-const fromBlob = (imgBlob, width) => {
+const fromBlob = (imgBlob, width): Promise<{ blob: any; imgHeight: number }> => {
   return new Promise((resolve) => {
     const reader = new FileReader()
     reader.readAsDataURL(imgBlob)
@@ -27,19 +27,22 @@ const fromBlob = (imgBlob, width) => {
           (blob) =>
             resolve(
               // @ts-ignore
-              new Blob([blob], {
-                type: "image/webp",
-              })
+              {
+                blob: new Blob([blob], {
+                  type: "image/webp",
+                }),
+                imgHeight: size.height,
+              }
             ),
           "image/webp",
-          80
+          90
         )
       }
     }
   })
 }
 
-export default async function uploadImage(file, width, toast) {
+export default async function uploadImage(file, width, toast): Promise<any> {
   if (file.size / 1024 > 5000) {
     toast({
       title: "Size error",
@@ -48,7 +51,7 @@ export default async function uploadImage(file, width, toast) {
       duration: 6000,
       isClosable: true,
     })
-    return false
+    return { filename: false }
   }
   toast({
     title: `Uploading ${file["name"]}...`,
@@ -57,7 +60,7 @@ export default async function uploadImage(file, width, toast) {
   })
   const antiCSRFToken = getAntiCSRFToken()
   if (antiCSRFToken) {
-    const blob: any = await fromBlob(file, width)
+    const { blob, imgHeight } = await fromBlob(file, width)
     var formData = new FormData()
     const filename = `${new Date().getTime()}_${encodeURI(file["name"])}`
     formData.append("image", blob, filename)
@@ -70,7 +73,7 @@ export default async function uploadImage(file, width, toast) {
       })
       if (imageUrl) {
         toast.closeAll()
-        return filename
+        return { filename, imgHeight }
       }
     } catch (e) {
       toast({
@@ -80,7 +83,8 @@ export default async function uploadImage(file, width, toast) {
         duration: 6000,
         isClosable: true,
       })
-      return false
+      return { filename: false }
     }
   }
+  return { filename: false }
 }
