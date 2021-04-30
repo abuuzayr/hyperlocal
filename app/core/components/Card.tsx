@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useMutation, Link as InternalLink } from "blitz"
+import { useMutation, Link as InternalLink, Image as NextImage } from "blitz"
 import {
   Box,
   Center,
@@ -9,7 +9,6 @@ import {
   HStack,
   Avatar,
   useColorModeValue,
-  Image,
   Badge,
   Button,
   Icon,
@@ -33,6 +32,7 @@ const Card = (props) => {
     category,
     tagline,
     img,
+    imgHeight,
     logo,
     name,
     tags,
@@ -103,7 +103,7 @@ const Card = (props) => {
       >
         {img ? (
           <Box
-            maxH={"180px"}
+            h={imgHeight ? `${imgHeight < 180 ? imgHeight : 180}px` : "180px"}
             bg={boxBgColor}
             mt={-6}
             mx={-6}
@@ -126,7 +126,12 @@ const Card = (props) => {
             >
               {category}
             </Text>
-            <Image src={img} objectFit="cover" />
+            <NextImage
+              src={img}
+              layout="fill"
+              objectFit="cover"
+              alt={`featured image for ${name}`}
+            />
             <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
               <Icon
                 as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
@@ -161,7 +166,6 @@ const Card = (props) => {
             >
               {category}
             </Text>
-            <Image src={img} objectFit="cover" />
             <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
               <Icon
                 as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
@@ -182,7 +186,7 @@ const Card = (props) => {
         )}
         {logo && (
           <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
-            <Avatar src={logo} alt={"Author"} bg={iconBgColor} />
+            <Avatar src={logo} alt={`icon for ${name}`} bg={iconBgColor} />
           </HStack>
         )}
         <Stack textAlign={"center"}>
