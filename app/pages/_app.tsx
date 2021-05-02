@@ -123,7 +123,3 @@ function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
     return <Error statusCode={error.statusCode || 400} title={error.message || error.name} />
   }
 }
-
-export function reportWebVitals(metric) {
-  console.log(metric)
-}
