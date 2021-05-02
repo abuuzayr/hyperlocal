@@ -123,6 +123,7 @@ const Card = (props) => {
               position={"absolute"}
               top={3}
               left={3}
+              zIndex={9}
             >
               {category}
             </Text>
@@ -163,6 +164,7 @@ const Card = (props) => {
               position={"absolute"}
               top={3}
               left={3}
+              zIndex={9}
             >
               {category}
             </Text>
