@@ -288,6 +288,7 @@ const Card = (props) => {
             bottom={2}
             p={0}
             color="gray.500"
+            display={["none", "none", "inline-block"]}
           />
         </Tooltip>
         {isOwner && (
