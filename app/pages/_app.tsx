@@ -42,7 +42,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     // @ts-ignore
     window.$crisp = []
     // @ts-ignore
-    window.CRISP_WEBSITE_ID = "95d50119-42ab-4fdb-b6d6-9142ed39684c"
+    window.CRISP_WEBSITE_ID = process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID
     let d = document
     let s = d.createElement("script")
 
@@ -62,6 +62,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
             "hyperlocal.sg - Awesome apps, services, products and communities made by Singaporeans"
           }
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />

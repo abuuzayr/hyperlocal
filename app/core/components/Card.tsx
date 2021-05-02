@@ -123,6 +123,7 @@ const Card = (props) => {
               position={"absolute"}
               top={3}
               left={3}
+              zIndex={9}
             >
               {category}
             </Text>
@@ -163,6 +164,7 @@ const Card = (props) => {
               position={"absolute"}
               top={3}
               left={3}
+              zIndex={9}
             >
               {category}
             </Text>
@@ -274,7 +276,9 @@ const Card = (props) => {
         </Stack>
         <Tooltip
           hasArrow
-          label="See an issue with this listing? Email us at hello@hyperlocal.sg or chat with us!"
+          placement="left"
+          label="Issue with this listing? Chat with us!"
+          fontSize="xs"
         >
           <InfoOutlineIcon
             h={15}
@@ -284,6 +288,7 @@ const Card = (props) => {
             bottom={2}
             p={0}
             color="gray.500"
+            display={["none", "none", "inline-block"]}
           />
         </Tooltip>
         {isOwner && (

@@ -32,7 +32,7 @@ const GridSkeleton = () => {
   )
 }
 
-const GridComponentWithQuery = ({ toggle }) => {
+const GridComponentWithQuery = ({ toggle, orderBy }) => {
   const query = useRouterQuery()
   const where = {}
   if (
@@ -63,16 +63,6 @@ const GridComponentWithQuery = ({ toggle }) => {
       },
     ]
   }
-
-  let orderBy = useMemo(
-    () =>
-      [
-        { id: Math.random() > 0.5 ? "asc" : "desc" },
-        { createdAt: Math.random() > 0.5 ? "asc" : "desc" },
-        { name: Math.random() > 0.5 ? "asc" : "desc" },
-      ].sort(() => Math.random() - 0.5),
-    []
-  )
 
   const [
     listingPages,
