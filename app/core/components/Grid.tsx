@@ -1,4 +1,4 @@
-import { Suspense, useRef, useEffect, useState, Fragment } from "react"
+import { Suspense, useRef, useEffect, useState, Fragment, useMemo } from "react"
 import { useInfiniteQuery, useRouterQuery } from "blitz"
 import {
   Container,
@@ -10,35 +10,29 @@ import {
   Spinner,
   Button,
   Icon,
+  useColorModeValue,
 } from "@chakra-ui/react"
 import { IoInfiniteOutline } from "react-icons/io5"
 import Card from "app/core/components/Card"
 import getListings from "app/listings/queries/getListings"
 
 const GridSkeleton = () => {
+  const bg = useColorModeValue("white", "gray.900")
   return (
-    <>
+    <Box sx={{ columnCount: [1, 2, 2, 4], columnGap: "1.5rem" }}>
       {Array(...Array(12)).map((v, i) => (
         <Center py={0} d="inline-block" maxW={"445px"} w={"full"} key={i}>
-          <Box
-            p={6}
-            overflow={"hidden"}
-            bg={"white"}
-            boxShadow={"2xl"}
-            rounded={"md"}
-            mb={4}
-            h={300}
-          >
+          <Box p={6} overflow={"hidden"} bg={bg} boxShadow={"2xl"} rounded={"md"} mb={4} h={300}>
             <SkeletonCircle size="20" mx={"auto"} my={10} />
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
           </Box>
         </Center>
       ))}
-    </>
+    </Box>
   )
 }
 
-const GridComponentWithQuery = ({ toggle }) => {
+const GridComponentWithQuery = ({ toggle, orderBy }) => {
   const query = useRouterQuery()
   const where = {}
   if (
@@ -73,8 +67,9 @@ const GridComponentWithQuery = ({ toggle }) => {
   const [
     listingPages,
     { isFetchingNextPage, fetchNextPage, hasNextPage, refetch },
-  ] = useInfiniteQuery(getListings, (page = { take: 25, skip: 0, where }) => page, {
+  ] = useInfiniteQuery(getListings, (page = { take: 25, skip: 0, where, orderBy }) => page, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
+    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {
@@ -88,7 +83,7 @@ const GridComponentWithQuery = ({ toggle }) => {
     gridTemplateColumns?: string
     gap?: string
   }
-  let sx: SX = { columnCount: [1, 2, 4], columnGap: "1.5rem" }
+  let sx: SX = { columnCount: [1, 2, 2, 4], columnGap: "1.5rem" }
   if (listingPages[0].count <= 4) {
     sx = { display: ["block", "grid"], gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }
   }
