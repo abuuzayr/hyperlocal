@@ -276,7 +276,9 @@ const Card = (props) => {
         </Stack>
         <Tooltip
           hasArrow
-          label="See an issue with this listing? Email us at hello@hyperlocal.sg or chat with us!"
+          placement="left"
+          label="Issue with this listing? Chat with us!"
+          fontSize="xs"
         >
           <InfoOutlineIcon
             h={15}
