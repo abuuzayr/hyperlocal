@@ -62,7 +62,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
             "hyperlocal.sg - Awesome apps, services, products and communities made by Singaporeans"
           }
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        />
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
@@ -80,6 +83,40 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
+        <meta name="application-name" content="hyperlocal.sg" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="hyperlocal.sg" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content="https://hyperlocal.sg" />
+        <meta name="twitter:title" content="hyperlocal.sg" />
+        <meta
+          name="twitter:description"
+          content="Awesome apps, services, products and communities made by Singaporeans"
+        />
+        <meta name="twitter:image" content="https://hyperlocal.sg/android-chrome-192x192.png" />
+        <meta name="twitter:creator" content="@DavidWShadow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="hyperlocal.sg" />
+        <meta
+          property="og:description"
+          content="Awesome apps, services, products and communities made by Singaporeans"
+        />
+        <meta property="og:site_name" content="hyperlocal.sg" />
+        <meta property="og:url" content="https://hyperlocal.sg" />
+        <meta property="og:image" content="https://hyperlocal.sg/apple-touch-icon.png" />
       </Head>
       <AnimatePresence initial={false} exitBeforeEnter>
         <MotionBox
