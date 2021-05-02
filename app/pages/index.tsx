@@ -1,5 +1,5 @@
 import { BlitzPage, useRouterQuery } from "blitz"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { useDisclosure } from "@chakra-ui/react"
 import Layout from "app/core/layouts/Layout"
 import Hero from "app/core/components/Hero"
@@ -18,12 +18,32 @@ const Home: BlitzPage = () => {
       if (!disclosure.isOpen) disclosure.onOpen()
     }
   }, [query])
+
+  const orderBy = useMemo(() => {
+    const fields = [
+      "id",
+      "createdAt",
+      "name",
+      "tagline",
+      "img",
+      "logo",
+      "likes",
+      "tags",
+      "website",
+      "social",
+    ]
+    return fields
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map((field) => ({ [field]: Math.random() > 0.5 ? "asc" : "desc" }))
+  }, [])
+
   return (
     <>
       <div className="container">
         <Hero />
         <Categories toggle={toggle} />
-        <GridComponent toggle={toggle} />
+        <GridComponent toggle={toggle} orderBy={orderBy} />
         <Section onAddOpen={disclosure.onOpen} />
       </div>
       <ListingModal {...disclosure} toggle={toggle} setToggle={setToggle} />
