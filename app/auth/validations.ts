@@ -41,7 +41,7 @@ export const CreateOrUpdateListing = z
     img: z.any(),
     imgHeight: z.number().optional(),
     logo: z.any(),
-    tags: z.string().optional(),
+    tags: z.string().max(160).optional(),
     website: z.string().url().optional(),
     social: z.string().url().optional(),
   })

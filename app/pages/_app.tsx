@@ -96,7 +96,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.png" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 
         <meta name="twitter:card" content="summary" />
@@ -106,7 +106,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           name="twitter:description"
           content="Awesome apps, services, products and communities made by Singaporeans"
         />
-        <meta name="twitter:image" content="https://hyperlocal.sg/android-chrome-192x192.png" />
+        <meta name="twitter:image" content="https://hyperlocal.sg/social.png" />
         <meta name="twitter:creator" content="@DavidWShadow" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="hyperlocal.sg" />
@@ -116,7 +116,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         />
         <meta property="og:site_name" content="hyperlocal.sg" />
         <meta property="og:url" content="https://hyperlocal.sg" />
-        <meta property="og:image" content="https://hyperlocal.sg/apple-touch-icon.png" />
+        <meta property="og:image" content="https://hyperlocal.sg/social.png" />
       </Head>
       <AnimatePresence initial={false} exitBeforeEnter>
         <MotionBox
