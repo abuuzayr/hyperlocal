@@ -7,7 +7,7 @@ import { ListingForm, FORM_ERROR } from "app/listings/components/ListingForm"
 
 export const EditListing = () => {
   const router = useRouter()
-  const listingId = useParam("listingId", "number")
+  const listingId = useParam("listingId", "string")
   const [listing, { setQueryData }] = useQuery(getListing, { id: listingId })
   const [updateListingMutation] = useMutation(updateListing)
 

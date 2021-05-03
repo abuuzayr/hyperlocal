@@ -60,12 +60,13 @@ enum TokenType {
 }
 
 model Listing {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   category  String
   tagline   String
   img       String?
+  imgHeight Float?
   logo      String?
   name      String
   likes     Int      @default(0)

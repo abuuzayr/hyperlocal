@@ -21,10 +21,13 @@ const Hero = () => {
             <Image
               src={"/singapore.svg"}
               height={{ base: "30px", md: "40px" }}
+              width={{ base: "43px", md: "57.5px" }}
+              fontSize={1}
               display={"inline-block"}
               boxShadow={"dark-lg"}
               borderRadius={"md"}
               ml={4}
+              alt="Singapore flag"
             />
           </Heading>
           <Text fontSize={{ base: "md", lg: "lg" }} textAlign={{ base: "center", md: "left" }}>
@@ -50,7 +53,7 @@ const Hero = () => {
         </Stack>
       </Flex>
       <Flex flex={1}>
-        <Image alt={"Hero Image"} objectFit={"cover"} src={"/hero.svg"} boxSize="100%" />
+        <Image alt={"building blocks"} objectFit={"cover"} src={"/hero.svg"} boxSize="100%" />
       </Flex>
     </Stack>
   )
