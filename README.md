@@ -195,6 +195,7 @@ Project Link: [https://github.com/abuuzayr/hyperlocal/](https://github.com/abuuz
 - PostgreSQL hosting by [Supabase](https://supabase.io)
 - README template from [Best README Template](https://github.com/othneildrew/Best-README-Template/)
 - Shields by [shields.io](https://shields.io/)
+- Chat widget by [Crisp](https://crisp.chat/en/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
