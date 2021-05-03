@@ -10,10 +10,9 @@
 <br />
 <p align="center">
   <a href="https://github.com/abuuzayr/hyperlocal/">
-    <img src="public/logo_transparent.png" alt="Logo" width="120" height="120">
+    <img src="public/logo_transparent.png" alt="Logo" width="250" height="250">
   </a>
 
-  <h3 align="center">hyperlocal.sg</h3>
 <p align="center">
     <a href="https://js-talks.netlify.com/" rel="nofollow" class="rich-diff-level-one"><img src="https://www.pwa-shields.com/1.0.0/series/classic/white/green.svg" alt="PWA Shields" style="max-width:100%;"></a>
 </p>
@@ -43,11 +42,12 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#environment-variables">Environment Variables</a></li>
+        <li><a href="#tests">Tests</a></li>
+        <li><a href="#commands">Commands</a></li>
+        <li><a href="#learn-more">Learn More</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -61,9 +61,10 @@
 ## About The Project
 
 [![hyperlocal.sg Screen Shot 1][product-screenshot-1]](https://hyperlocal.sg)
+
 [![hyperlocal.sg Screen Shot 2][product-screenshot-2]](https://hyperlocal.sg)
 
-In April 2021, amidst the CoVID-19 pandemic there was a story about a retail chain (that rhymes with _nice_) and how it allegedly swindled several independent creators of their money. I felt for the creators and thought of how ultimately, the creators were at the losing end if a shop like that would have to close its stores, which it eventually did. Many of these shops already have their own web presence, but this retail chain gave them a physical space and some exposure. Then, someone started collating a list of these creators/vendors to help on an Airtable list and I felt that perhaps we could do better.
+In April 2021, amidst the CoVID-19 pandemic there was a story about a retail chain (that rhymes with _nice_) and how it allegedly swindled several independent creators of their money. I felt for the creators and thought of how ultimately, the creators were at the losing end if a shop like that would have to close its stores, which it eventually did. Many of these shops already have their own web presence, but this retail chain gave them a physical space and some exposure. Then, someone started collating a list of these creators/vendors to help on [an Airtable list](https://airtable.com/shr7mnheTOXHsOsOJ/tblS3ksHjWZsLawxL) and I felt that perhaps we could do better.
 
 So I made [hyperlocal.sg](https://hyperlocal.sg) - to sort of aggregate all these listings and help them be discovered, by means of a combined marketing, content and exposure effort.
 
@@ -203,5 +204,5 @@ Project Link: [https://github.com/abuuzayr/hyperlocal/](https://github.com/abuuz
 [linkedin-url]: https://www.linkedin.com/in/muhammadfawwaz/
 [twitter-shield]: https://img.shields.io/twitter/url?color=555&logo=twitter&style=for-the-badge&url=https%3A%2F%2Fhyperlocal.sg
 [twitter-url]: https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fhyperlocal.sg
-[product-screenshot-1]: public/screenshot1.png
-[product-screenshot-2]: public/screenshot2.png
+[product-screenshot-1]: public/screenshot2.png
+[product-screenshot-2]: public/screenshot1.png
