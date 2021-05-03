@@ -205,19 +205,22 @@ const Card = (props) => {
         </Stack>
         <Stack align={"center"} justify={"center"} direction={"row"} mt={4} flexWrap="wrap">
           {tags &&
-            tags.split(",").map((tag, i) => (
-              <Badge
-                px={2}
-                py={1}
-                bg={badgeBgColor}
-                color={"gray.900"}
-                fontWeight={"400"}
-                key={`${tag}-${i}`}
-                mb={2}
-              >
-                {tag}
-              </Badge>
-            ))}
+            tags
+              .split(",")
+              .slice(0, 3)
+              .map((tag, i) => (
+                <Badge
+                  px={2}
+                  py={1}
+                  bg={badgeBgColor}
+                  color={"gray.900"}
+                  fontWeight={"400"}
+                  key={`${tag}-${i}`}
+                  mb={2}
+                >
+                  {tag}
+                </Badge>
+              ))}
         </Stack>
         <Stack mt={2} direction={"row"} flexWrap="wrap" mb={-2}>
           {social && (
