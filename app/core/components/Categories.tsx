@@ -105,9 +105,9 @@ const Categories = (props) => {
   const router = useRouter()
   const params = new URLSearchParams()
   Object.keys(router.query).forEach((key) => {
-    params.set(key, params[key])
+    params.set(key, router.query[key] as string)
   })
-  const [search, setSearch] = useState(new URLSearchParams(params).get("search") || "")
+  const [search, setSearch] = useState(params.get("search") || "")
   return (
     <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }} id="discover">
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
