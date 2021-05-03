@@ -45,10 +45,11 @@ export function ListingForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
         />
       </Stack>
       <LabeledTextField
-        label="Tags (comma delimited labels)"
+        label="Tags (comma delimited labels, keywords)"
         name="tags"
         placeholder="e.g. Sneakers, Music, Food"
-        helperText="Only 3 tags will be shown"
+        helperText="You can write several but only the first 3 tags will be shown"
+        maxLength={160}
       />
       <Stack direction={["column", "row"]} spacing={3}>
         <LabeledTextField label="Website URL" name="website" placeholder="Website" />
