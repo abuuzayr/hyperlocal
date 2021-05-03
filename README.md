@@ -203,5 +203,5 @@ Project Link: [https://github.com/abuuzayr/hyperlocal/](https://github.com/abuuz
 [linkedin-url]: https://www.linkedin.com/in/muhammadfawwaz/
 [twitter-shield]: https://img.shields.io/twitter/url?color=555&logo=twitter&style=for-the-badge&url=https%3A%2F%2Fhyperlocal.sg
 [twitter-url]: https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fhyperlocal.sg
-[product-screenshot-1]: images/screenshot1.png
-[product-screenshot-2]: images/screenshot2.png
+[product-screenshot-1]: public/screenshot1.png
+[product-screenshot-2]: public/screenshot2.png
