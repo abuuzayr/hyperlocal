@@ -1,8 +1,77 @@
-[![Blitz.js](https://raw.githubusercontent.com/blitz-js/art/master/github-cover-photo.png)](https://blitzjs.com)
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Twitter][twitter-shield]][twitter-url]
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/abuuzayr/hyperlocal/">
+    <img src="public/logo_transparent.png" alt="Logo" width="120" height="120">
+  </a>
+
+  <h3 align="center">hyperlocal.sg</h3>
+<p align="center">
+    <a href="https://js-talks.netlify.com/" rel="nofollow" class="rich-diff-level-one"><img src="https://www.pwa-shields.com/1.0.0/series/classic/white/green.svg" alt="PWA Shields" style="max-width:100%;"></a>
+</p>
+
+  <p align="center">
+    Awesome apps, services, products and communities made by Singaporeans
+    <br />
+    <a href="https://hyperlocal.sg"><strong>Go to hyperlocal.sg »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/abuuzayr/hyperlocal/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/abuuzayr/hyperlocal/issues">Request Feature</a>
+  </p>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+[![hyperlocal.sg Screen Shot 1][product-screenshot-1]](https://hyperlocal.sg)
+[![hyperlocal.sg Screen Shot 2][product-screenshot-2]](https://hyperlocal.sg)
+
+In April 2021, amidst the CoVID-19 pandemic there was a story about a retail chain (that rhymes with _nice_) and how it allegedly swindled several independent creators of their money. I felt for the creators and thought of how ultimately, the creators were at the losing end if a shop like that would have to close its stores, which it eventually did. Many of these shops already have their own web presence, but this retail chain gave them a physical space and some exposure. Then, someone started collating a list of these creators/vendors to help on an Airtable list and I felt that perhaps we could do better.
+
+So I made [hyperlocal.sg](https://hyperlocal.sg) - to sort of aggregate all these listings and help them be discovered, by means of a combined marketing, content and exposure effort.
+
+### Built With
 
 This is a [Blitz.js](https://github.com/blitz-js/blitz) app.
 
-# **hyperlocal**
+<!-- GETTING STARTED -->
 
 ## Getting Started
 
@@ -59,106 +128,6 @@ Blitz comes with a powerful CLI that is designed to make development easy and fa
 
 You can read more about it on the [CLI Overview](https://blitzjs.com/docs/cli-overview) documentation.
 
-## What's included?
-
-Here is the starting structure of your app.
-
-```
-hyperlocal
-├── app/
-│   ├── api/
-│   ├── auth/
-│   │   ├── components/
-│   │   │   ├── LoginForm.tsx
-│   │   │   └── SignupForm.tsx
-│   │   ├── mutations/
-│   │   │   ├── changePassword.ts
-│   │   │   ├── forgotPassword.test.ts
-│   │   │   ├── forgotPassword.ts
-│   │   │   ├── login.ts
-│   │   │   ├── logout.ts
-│   │   │   ├── resetPassword.test.ts
-│   │   │   ├── resetPassword.ts
-│   │   │   └── signup.ts
-│   │   ├── pages/
-│   │   │   ├── forgot-password.tsx
-│   │   │   ├── login.tsx
-│   │   │   ├── reset-password.tsx
-│   │   │   └── signup.tsx
-│   │   └── validations.ts
-│   ├── core/
-│   │   ├── components/
-│   │   │   ├── Form.tsx
-│   │   │   └── LabeledTextField.tsx
-│   │   ├── hooks/
-│   │   │   └── useCurrentUser.ts
-│   │   └── layouts/
-│   │       └── Layout.tsx
-│   ├── pages/
-│   │   ├── 404.tsx
-│   │   ├── _app.tsx
-│   │   ├── _document.tsx
-│   │   ├── index.test.tsx
-│   │   └── index.tsx
-│   └── users/
-│       └── queries/
-│           └── getCurrentUser.ts
-├── db/
-│   ├── index.ts
-│   ├── schema.prisma
-│   └── seeds.ts
-├── integrations/
-├── mailers/
-│   └── forgotPasswordMailer.ts
-├── public/
-│   ├── favicon.ico*
-│   └── logo.png
-├── test/
-│   ├── setup.ts
-│   └── utils.tsx
-├── README.md
-├── babel.config.js
-├── blitz.config.js
-├── jest.config.js
-├── package.json
-├── tsconfig.json
-├── types.d.ts
-├── types.ts
-└── yarn.lock
-```
-
-These files are:
-
-- The `app/` folder is a container for most of your project. This is where you’ll put any pages or API routes.
-
-- `db/` is where your database configuration goes. If you’re writing models or checking migrations, this is where to go.
-
-- `public/` is a folder where you will put any static assets. If you have images, files, or videos which you want to use in your app, this is where to put them.
-
-- `integrations/` is a folder to put all third-party integrations like with Stripe, Sentry, etc.
-
-- `test/` is a folder where you can put test utilities and integration tests.
-
-- `package.json` contains information about your dependencies and devDependencies. If you’re using a tool like `npm` or `yarn`, you won’t have to worry about this much.
-
-- `tsconfig.json` is our recommended setup for TypeScript.
-
-- `.babelrc.js`, `.env`, etc. ("dotfiles") are configuration files for various bits of JavaScript tooling.
-
-- `blitz.config.js` is for advanced custom configuration of Blitz. It extends [`next.config.js`](https://nextjs.org/docs/api-reference/next.config.js/introduction).
-
-- `jest.config.js` contains config for Jest tests. You can [customize it if needed](https://jestjs.io/docs/en/configuration).
-
-You can read more about it in the [File Structure](https://blitzjs.com/docs/file-structure) section of the documentation.
-
-### Tools included
-
-Blitz comes with a set of tools that corrects and formats your code, facilitating its future maintenance. You can modify their options and even uninstall them.
-
-- **ESLint**: It lints your code: searches for bad practices and tell you about it. You can customize it via the `.eslintrc.js`, and you can install (or even write) plugins to have it the way you like it. It already comes with the [`blitz`](https://github.com/blitz-js/blitz/tree/canary/packages/eslint-config) config, but you can remove it safely. [Learn More](https://eslint.org).
-- **Husky**: It adds [githooks](https://git-scm.com/docs/githooks), little pieces of code that get executed when certain Git events are triggerd. For example, `pre-commit` is triggered just before a commit is created. You can see the current hooks inside `.husky/`. If are having problems commiting and pushing, check out ther [troubleshooting](https://typicode.github.io/husky/#/?id=troubleshoot) guide. [Learn More](https://typicode.github.io/husky).
-- **Prettier**: It formats your code to look the same everywhere. You can configure it via the `.prettierrc` file. The `.prettierignore` contains the files that should be ignored by Prettier; useful when you have large files or when you want to keep a custom formatting. [Learn More](https://prettier.io).
-
 ## Learn more
 
 Read the [Blitz.js Documentation](https://blitzjs.com/docs/getting-started) to learn more.
@@ -171,3 +140,68 @@ The Blitz community is warm, safe, diverse, inclusive, and fun! Feel free to rea
 - [Forum discussions](https://github.com/blitz-js/blitz/discussions)
 - [How to Contribute](https://blitzjs.com/docs/contributing)
 - [Sponsor or donate](https://github.com/blitz-js/blitz#sponsors-and-donations)
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+See the [open issues](https://github.com/abuuzayr/hyperlocal/issues) for a list of proposed features (and known issues).
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+
+## Contact
+
+Muhammad - abu.uzayr@builtforfifty.com
+
+Project Link: [https://github.com/abuuzayr/hyperlocal/](https://github.com/abuuzayr/hyperlocal/)
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## Acknowledgements
+
+- Secure, private email forwarding by [ForwardEmail](https://forwardemail.net/)
+- Email newsletters by [Mail Octopus](https://connoratherton.com/loaders)
+- Analytics by [Panelbear](https://kenwheeler.github.io/slick)
+- CDN, DNS by [Cloudflare](https://github.com/cferdinandi/smooth-scroll)
+- Database ORM by [Prisma](http://leafo.net/sticky-kit)
+- Cloud hosting by [Vercel](https://vercel.com)
+- PostgreSQL hosting by [Supabase](https://supabase.io)
+- README template from [Best README Template](https://github.com/othneildrew/Best-README-Template/)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/abuuzayr/hyperlocal.svg?style=for-the-badge
+[contributors-url]: https://github.com/abuuzayr/hyperlocal/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/abuuzayr/hyperlocal.svg?style=for-the-badge
+[forks-url]: https://github.com/abuuzayr/hyperlocal/network/members
+[stars-shield]: https://img.shields.io/github/stars/abuuzayr/hyperlocal.svg?style=for-the-badge
+[stars-url]: https://github.com/abuuzayr/hyperlocal/stargazers
+[issues-shield]: https://img.shields.io/github/issues/abuuzayr/hyperlocal.svg?style=for-the-badge
+[issues-url]: https://github.com/abuuzayr/hyperlocal/issues
+[license-shield]: https://img.shields.io/github/license/abuuzayr/hyperlocal.svg?style=for-the-badge
+[license-url]: https://github.com/abuuzayr/hyperlocal/blob/master/LICENSE
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/muhammadfawwaz/
+[twitter-shield]: https://img.shields.io/twitter/url?color=555&logo=twitter&style=for-the-badge&url=https%3A%2F%2Fhyperlocal.sg
+[twitter-url]: https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fhyperlocal.sg
+[product-screenshot-1]: images/screenshot1.png
+[product-screenshot-2]: images/screenshot2.png
