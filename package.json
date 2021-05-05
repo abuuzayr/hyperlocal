@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "blitz dev",
-    "build": "NODE_ENV=production blitz build && blitz prisma migrate deploy --preview-feature",
+    "build": "NODE_ENV=production blitz prisma migrate deploy --preview-feature && blitz build",
     "start": "blitz start --port $PORT",
     "studio": "blitz prisma studio",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
@@ -38,6 +38,7 @@
     "formidable": "1.2.2",
     "framer-motion": "3.2.0",
     "hasha": "5.2.2",
+    "next-pwa": "5.2.20",
     "prisma": "~2.20",
     "react": "0.0.0-experimental-6a589ad71",
     "react-debounce-input": "3.2.3",

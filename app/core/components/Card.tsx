@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useMutation } from "blitz"
+import { useMutation, Link as InternalLink, Image as NextImage } from "blitz"
 import {
   Box,
   Center,
@@ -9,14 +9,13 @@ import {
   HStack,
   Avatar,
   useColorModeValue,
-  Image,
   Badge,
   Button,
   Icon,
   Tooltip,
   Link,
 } from "@chakra-ui/react"
-import { ExternalLinkIcon, InfoOutlineIcon } from "@chakra-ui/icons"
+import { ExternalLinkIcon, InfoOutlineIcon, EditIcon } from "@chakra-ui/icons"
 import { IoShareSocialOutline } from "react-icons/io5"
 import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri"
 import updateListing from "app/listings/mutations/updateListing"
@@ -33,6 +32,7 @@ const Card = (props) => {
     category,
     tagline,
     img,
+    imgHeight,
     logo,
     name,
     tags,
@@ -40,10 +40,12 @@ const Card = (props) => {
     website,
     likes: originalLikes,
     id,
+    createdAt,
   } = props.data
   const [liked, setLiked] = useState<number[]>([])
   const [likes, setLikes] = useState<number>(originalLikes)
   const [updateListingMutation] = useMutation(updateListing)
+  const [isOwner, setIsOwner] = useState(false)
 
   const addLike = async () => {
     try {
@@ -67,17 +69,33 @@ const Card = (props) => {
   }
 
   useEffect(() => {
-    if (localStorage && localStorage.getItem("_liked")) {
-      setLiked(JSON.parse(localStorage.getItem("_liked") || "[]"))
+    if (localStorage) {
+      if (localStorage.getItem("_liked")) {
+        setLiked(JSON.parse(localStorage.getItem("_liked") || "[]"))
+      }
+      if (localStorage.getItem("_listings")) {
+        try {
+          const owns = JSON.parse(localStorage.getItem("_listings") || "")
+          if (owns.hasOwnProperty(id) && owns[id] === new Date(createdAt).getTime()) {
+            setIsOwner(true)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
     }
   }, [])
+
+  const boxBgColor = useColorModeValue("gray.100", "gray.900")
+  const iconBgColor = useColorModeValue("white", "gray.700")
+  const badgeBgColor = useColorModeValue("gray.50", "gray.400")
 
   return (
     <Center py={0} d="inline-block" maxW={"445px"} w={"full"}>
       <Box
         p={6}
         overflow={"hidden"}
-        bg={useColorModeValue("white", "gray.400")}
+        bg={useColorModeValue("white", "gray.700")}
         boxShadow={"2xl"}
         rounded={"md"}
         mb={4}
@@ -85,8 +103,8 @@ const Card = (props) => {
       >
         {img ? (
           <Box
-            h={"180px"}
-            bg={"gray.100"}
+            h={imgHeight ? `${imgHeight < 180 ? imgHeight : 180}px` : "180px"}
+            bg={boxBgColor}
             mt={-6}
             mx={-6}
             mb={6}
@@ -105,10 +123,16 @@ const Card = (props) => {
               position={"absolute"}
               top={3}
               left={3}
+              zIndex={9}
             >
               {category}
             </Text>
-            <Image src={img} objectFit="cover" />
+            <NextImage
+              src={img}
+              layout="fill"
+              objectFit="cover"
+              alt={`featured image for ${name}`}
+            />
             <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
               <Icon
                 as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
@@ -140,10 +164,10 @@ const Card = (props) => {
               position={"absolute"}
               top={3}
               left={3}
+              zIndex={9}
             >
               {category}
             </Text>
-            <Image src={img} objectFit="cover" />
             <Stack direction="column" position={"absolute"} top={3} right={3} textAlign={"center"}>
               <Icon
                 as={liked.includes(id) ? RiHeart2Fill : RiHeart2Line}
@@ -164,7 +188,7 @@ const Card = (props) => {
         )}
         {logo && (
           <HStack justifyContent={"center"} mb={3} mt={"-50px"}>
-            <Avatar src={logo} alt={"Author"} />
+            <Avatar src={logo} name={`icon for ${name}`} bg={iconBgColor} loading="lazy" />
           </HStack>
         )}
         <Stack textAlign={"center"}>
@@ -179,15 +203,26 @@ const Card = (props) => {
             {tagline}
           </Text>
         </Stack>
-        <Stack align={"center"} justify={"center"} direction={"row"} mt={4}>
+        <Stack align={"center"} justify={"center"} direction={"row"} mt={4} flexWrap="wrap">
           {tags &&
-            tags.split(",").map((tag, i) => (
-              <Badge px={2} py={1} bg={"gray.50"} fontWeight={"400"} key={`${tag}-${i}`}>
-                {tag}
-              </Badge>
-            ))}
+            tags
+              .split(",")
+              .slice(0, 3)
+              .map((tag, i) => (
+                <Badge
+                  px={2}
+                  py={1}
+                  bg={badgeBgColor}
+                  color={"gray.900"}
+                  fontWeight={"400"}
+                  key={`${tag}-${i}`}
+                  mb={2}
+                >
+                  {tag}
+                </Badge>
+              ))}
         </Stack>
-        <Stack mt={4} direction={"row"} spacing={4}>
+        <Stack mt={2} direction={"row"} flexWrap="wrap" mb={-2}>
           {social && (
             <Link
               flex={1}
@@ -197,6 +232,7 @@ const Card = (props) => {
               _hover={{
                 textTransform: "none",
               }}
+              mb={2}
             >
               <Button
                 w={"full"}
@@ -214,12 +250,13 @@ const Card = (props) => {
           {website && (
             <Link
               flex={1}
-              href={social}
+              href={website}
               target="_blank"
               rel="noopener nofollow"
               _hover={{
                 textTransform: "none",
               }}
+              mb={2}
             >
               <Button
                 w={"full"}
@@ -242,7 +279,9 @@ const Card = (props) => {
         </Stack>
         <Tooltip
           hasArrow
-          label="See an issue with this listing? Email us at hello@hyperlocal.sg or chat with us!"
+          placement="left"
+          label="Issue with this listing? Chat with us!"
+          fontSize="xs"
         >
           <InfoOutlineIcon
             h={15}
@@ -252,8 +291,24 @@ const Card = (props) => {
             bottom={2}
             p={0}
             color="gray.500"
+            display={["none", "none", "inline-block"]}
           />
         </Tooltip>
+        {isOwner && (
+          <InternalLink href={`/?edit=${id}`} scroll={false}>
+            <a>
+              <EditIcon
+                h={4}
+                position="absolute"
+                bg={"transparent"}
+                left={2}
+                bottom={2}
+                p={0}
+                color="gray.500"
+              />
+            </a>
+          </InternalLink>
+        )}
       </Box>
     </Center>
   )
