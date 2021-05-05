@@ -58,11 +58,11 @@ export default async function uploadImage(file, width, toast): Promise<any> {
   })
   const antiCSRFToken = getAntiCSRFToken()
   if (antiCSRFToken) {
-    const { blob, imgHeight } = await fromBlob(file, width)
-    var formData = new FormData()
-    const filename = `${new Date().getTime()}_${encodeURI(file["name"])}`
-    formData.append("image", blob, filename)
     try {
+      const { blob, imgHeight } = await fromBlob(file, width)
+      var formData = new FormData()
+      const filename = `${new Date().getTime()}_${encodeURI(file["name"])}`
+      formData.append("image", blob, filename)
       const imageUrl = await axios.post("/api/uploadImage", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -81,8 +81,17 @@ export default async function uploadImage(file, width, toast): Promise<any> {
         duration: 6000,
         isClosable: true,
       })
+      console.error(e)
       return { filename: false }
     }
+  } else {
+    toast({
+      title: "File upload error",
+      description: `Error uploading ${file["name"]} - unable to get CSRF token, please try again`,
+      status: "error",
+      duration: 6000,
+      isClosable: true,
+    })
   }
   return { filename: false }
 }
