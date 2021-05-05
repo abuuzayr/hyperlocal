@@ -1,4 +1,15 @@
-import { Stack, Flex, Button, Text, VStack, Heading, Container, Box } from "@chakra-ui/react"
+import { Link as InternalLink, Image } from "blitz"
+import {
+  Stack,
+  Flex,
+  Button,
+  Text,
+  VStack,
+  Heading,
+  Container,
+  Box,
+  useColorModeValue,
+} from "@chakra-ui/react"
 import { AddIcon } from "@chakra-ui/icons"
 
 const Section = ({ onAddOpen }) => {
@@ -7,36 +18,40 @@ const Section = ({ onAddOpen }) => {
       <Box p={4} mb={10} mt={4}>
         <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"} placeItems={"center"}>
           <Heading fontSize={["2xl", "3xl"]}>Know something we don't?</Heading>
-          <Text color={"gray.600"} fontSize={["md", "lg", "xl"]}>
+          <Text color={useColorModeValue("gray.600", "gray.400")} fontSize={["md", "lg", "xl"]}>
             Do you know of a product, service, app or community made by Singaporeans? Do share it
             with us by adding a listing here.
           </Text>
-          <Button
-            maxW={200}
-            colorScheme={"red"}
-            rounded={"md"}
-            variant="outline"
-            _hover={{ bg: "red.500", color: "white" }}
-            onClick={onAddOpen}
-          >
-            <AddIcon mr={3} /> Add a new listing
-          </Button>
+          <InternalLink href="/?add=listing" scroll={false}>
+            <a>
+              <Button
+                maxW={200}
+                rounded={"md"}
+                variant="outline"
+                color={"red.500"}
+                borderColor="red.500"
+                _hover={{ bg: "red.500", color: "white" }}
+              >
+                <AddIcon mr={3} /> Add a new listing
+              </Button>
+            </a>
+          </InternalLink>
         </Stack>
       </Box>
-      <Flex
-        w={"full"}
-        h={300}
-        backgroundImage={
-          "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80)"
-        }
-        backgroundSize={"cover"}
-        backgroundPosition={"center center"}
-      >
+      <Flex w={"full"} h={300} overflow={"hidden"} position={"relative"}>
+        <Image
+          alt="founder stories cta background"
+          src="/section.webp"
+          quality={100}
+          layout="fill"
+          objectFit="cover"
+        />
         <VStack
           w={"full"}
           justify={"center"}
           px={[4, 8]}
           bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
+          zIndex={9}
         >
           <Stack maxW={"2xl"} align={"flex-start"} spacing={6} textAlign={"left"}>
             <Heading color={"white"} fontWeight={700} lineHeight={1.2} fontSize={["3xl", "4xl"]}>

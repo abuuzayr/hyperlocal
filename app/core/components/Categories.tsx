@@ -8,13 +8,13 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  useColorModeValue,
+  Text,
   Input,
   InputGroup,
   InputLeftElement,
   Spinner,
 } from "@chakra-ui/react"
-import { Search2Icon } from "@chakra-ui/icons"
+import { Search2Icon, CheckCircleIcon } from "@chakra-ui/icons"
 import { DebounceInput } from "react-debounce-input"
 import { IconType } from "react-icons"
 import { FiShoppingBag } from "react-icons/fi"
@@ -29,6 +29,7 @@ interface StatsCardProps {
   icon: IconType
   color: string
   toggle: boolean
+  subtext: string
 }
 const StatCount = ({ category, toggle }) => {
   const [count, { refetch }] = useQuery(getListingCount, { where: { category } })
@@ -47,7 +48,7 @@ const WrappedStatNumber = (props) => (
   </Suspense>
 )
 function StatsCard(props: StatsCardProps) {
-  const { title, stat, icon, color, toggle } = props
+  const { title, stat, icon, color, toggle, subtext } = props
   const router = useRouter()
   const query = useRouterQuery()
   const active = query.hasOwnProperty("category") && query.category === stat
@@ -66,14 +67,14 @@ function StatsCard(props: StatsCardProps) {
       <Stat
         as={"a"}
         px={{ base: 2, md: 4 }}
-        py={"5"}
+        py={1}
         shadow={"xl"}
         border={"3px solid"}
         borderColor={color}
         rounded={"lg"}
         cursor={"pointer"}
         color={active ? "white" : color}
-        bg={active ? color : "white"}
+        bg={active ? color : "transparent"}
         _hover={{
           bg: color,
           color: "white",
@@ -81,7 +82,7 @@ function StatsCard(props: StatsCardProps) {
       >
         <Flex justifyContent={"space-between"}>
           <Box my={"auto"} alignContent={"center"}>
-            <Icon as={icon} boxSize={10} />
+            {active ? <Icon as={CheckCircleIcon} boxSize={10} /> : <Icon as={icon} boxSize={10} />}
           </Box>
           <Box pl={{ base: 2, md: 4 }}>
             <StatLabel fontWeight={"medium"} isTruncated textAlign={"right"}>
@@ -90,6 +91,11 @@ function StatsCard(props: StatsCardProps) {
             <WrappedStatNumber category={stat} toggle={toggle} />
           </Box>
         </Flex>
+        {subtext && (
+          <Text fontSize={10} as="div">
+            {subtext}
+          </Text>
+        )}
       </Stat>
     </Link>
   )
@@ -99,9 +105,9 @@ const Categories = (props) => {
   const router = useRouter()
   const params = new URLSearchParams()
   Object.keys(router.query).forEach((key) => {
-    params.set(key, params[key])
+    params.set(key, router.query[key] as string)
   })
-  const [search, setSearch] = useState(new URLSearchParams(params).get("search") || "")
+  const [search, setSearch] = useState(params.get("search") || "")
   return (
     <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }} id="discover">
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 5, lg: 8 }}>
@@ -111,6 +117,7 @@ const Categories = (props) => {
           icon={FiShoppingBag}
           color={"#2ecc71"}
           {...props}
+          subtext="Physical products"
         />
         <StatsCard
           title={"Services"}
@@ -118,14 +125,23 @@ const Categories = (props) => {
           icon={FaRegHandSpock}
           color={"#3498db"}
           {...props}
+          subtext="Intangible items"
         />
-        <StatsCard title={"Apps"} stat={"app"} icon={RiAppsLine} color={"#9b59b6"} {...props} />
+        <StatsCard
+          title={"Apps"}
+          stat={"app"}
+          icon={RiAppsLine}
+          color={"#9b59b6"}
+          {...props}
+          subtext="Web or mobile applications"
+        />
         <StatsCard
           title={"Communities"}
           stat={"community"}
           icon={BsPeople}
           color={"#e74c3c"}
           {...props}
+          subtext="Groups sharing a purpose"
         />
       </SimpleGrid>
       <Box maxW="3xl" mx={"auto"} my={8} mb={-2}>
