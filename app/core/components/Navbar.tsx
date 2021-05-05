@@ -16,7 +16,7 @@ const Navbar = () => {
               <a>
                 <Avatar
                   size={"sm"}
-                  src={"/logo_only.wepb"}
+                  src={"/logo_only.webp"}
                   name="hyperlocal.sg icon"
                   loading="lazy"
                 />
