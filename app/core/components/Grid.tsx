@@ -69,7 +69,7 @@ const GridComponentWithQuery = ({ toggle, orderBy }) => {
     { isFetchingNextPage, fetchNextPage, hasNextPage, refetch },
   ] = useInfiniteQuery(getListings, (page = { take: 25, skip: 0, where, orderBy }) => page, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   })
 
   useEffect(() => {
