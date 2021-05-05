@@ -33,7 +33,7 @@ const Error = ({ statusCode, title, text = "" }) => {
             position={"relative"}
             pt={[8, 16]}
           >
-            <Link href="/">
+            <Link href="/#">
               <a>
                 <Button
                   bg={"red.500"}
