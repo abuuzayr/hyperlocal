@@ -194,7 +194,7 @@ const Footer = () => {
             </Text>
             <Text fontSize={"xs"} mt={3}>
               Built with{" "}
-              <Link href="https://blitzjs.com/" rel="nofollow noopener">
+              <Link href="https://blitzjs.com/" rel="nofollow noopener" aria-label="Blitz.js">
                 <Icon as={BsLightningFill} boxSize={5} color="gold" d={"inline-block"} />
               </Link>{" "}
               by{" "}
