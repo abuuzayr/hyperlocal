@@ -85,9 +85,10 @@ export default async function uploadImage(file, width, toast): Promise<any> {
       return { filename: false }
     }
   } else {
+    toast.closeAll()
     toast({
       title: "File upload error",
-      description: `Error uploading ${file["name"]} - unable to get CSRF token, please try again`,
+      description: `Error uploading ${file["name"]} - unable to get CSRF token, please check if cookies are enabled for this website`,
       status: "error",
       duration: 6000,
       isClosable: true,
