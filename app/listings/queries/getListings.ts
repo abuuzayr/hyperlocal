@@ -1,10 +1,7 @@
 import { paginate, resolver } from "blitz"
-import db, { Prisma } from "db"
+import db from "db"
 
-interface GetListingsInput
-  extends Pick<Prisma.ListingFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
-
-export default resolver.pipe(async ({ where, orderBy, skip = 0, take = 25 }: GetListingsInput) => {
+export default resolver.pipe(async ({ where, orderBy, skip = 0, take = 25 }) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const { items: listings, hasMore, nextPage, count } = await paginate({
     skip,

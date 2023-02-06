@@ -1,8 +1,6 @@
 import { resolver } from "blitz"
-import db, { Prisma } from "db"
+import db from "db"
 
-interface GetListingsInput extends Pick<Prisma.ListingFindManyArgs, "where"> {}
-
-export default resolver.pipe(async ({ where }: GetListingsInput) => {
+export default resolver.pipe(async ({ where }) => {
   return db.listing.count({ where })
 })
