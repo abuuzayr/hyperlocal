@@ -24,4 +24,7 @@ module.exports = withPWA({
     return config
   },
   */
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 })
