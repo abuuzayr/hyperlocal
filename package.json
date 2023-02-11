@@ -5,6 +5,7 @@
     "dev": "blitz dev",
     "build": "NODE_ENV=production blitz prisma migrate deploy --preview-feature && blitz build",
     "start": "blitz start --port ${PORT-3000}",
+    "start": "blitz start --port $PORT",
     "studio": "blitz prisma studio",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
